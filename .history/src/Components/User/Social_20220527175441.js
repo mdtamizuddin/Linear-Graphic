@@ -14,7 +14,7 @@ const Social = () => {
             .then((result) => {
                 const user = result.user
                 navigate('/')
-                fetch(`http://localhost:5000/users/${user.email}`, {
+                fetch(`https://linear-graphic-server.vercel.app/users/${user.email}`, {
                     method: "put",
                     headers: {
                         'content-type': 'application/json'

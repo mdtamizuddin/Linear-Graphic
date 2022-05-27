@@ -16,7 +16,7 @@ const Social = () => {
                 
                 navigate('/')
                 setLoading(false)
-                fetch(`http://localhost:5000/users/${user.email}`, {
+                fetch(`https://linear-graphic-server.vercel.app/users/${user.email}`, {
                     method: "put",
                     headers: {
                         'content-type': 'application/json'
