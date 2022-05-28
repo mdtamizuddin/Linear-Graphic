@@ -42,6 +42,7 @@ const Navigations = () => {
             <li><Link to='profile'>Profile</Link></li>
             <li><Link to='portfolio'>Manage Portfolio</Link></li>
             <li><Link to='add-portfolio'>Add a Portfolio</Link></li>
+            <li><Link to='add-review'>Add a Review</Link></li>
             <li><Link to='services'>Manage Services</Link></li>
             <li><Link to='headers'>Headers</Link></li>
             <li><Link to='pricing'>Pricing</Link></li>

@@ -5,7 +5,20 @@ import submit from './image/submit.svg'
 import design from './image/designer.svg'
 import receive from './image/receive.svg'
 import Portfolio from '../Portfolio/Portfolio'
+import { useQuery } from 'react-query'
+import ReviewCard from '../Review/ReviewCard'
 const Home = () => {
+    const url = 'https://linear-graphic.herokuapp.com/review'
+    const { isLoading, data, refetch } = useQuery(['reviews'], () =>
+        fetch(url, {
+            method: 'get',
+            headers: {
+                auth: localStorage.getItem('Token')
+            }
+        })
+            .then(res => res.json()
+            )
+    )
     return (
         <div>
             <Header />
@@ -52,8 +65,23 @@ const Home = () => {
 
             {/* Portfolio section  */}
             {/* Portfolio section  */}
-            
+
             <Portfolio />
+
+
+            {/* review section  */}
+            {/* review section  */}
+            <div className='container mx-auto'>
+                <h1 className='text-4xl text-center mt-10 font-bold'>We Care About Our Client. They love us</h1>
+
+                <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-8 mt-10'>
+                    {
+                        data?.slice(0,6).map(review => <ReviewCard key={review._id}
+                            review={review}
+                        />)
+                    }
+                </div>
+            </div>
         </div>
     )
 }

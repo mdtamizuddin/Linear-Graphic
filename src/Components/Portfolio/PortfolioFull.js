@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 const PortfolioFull = () => {
     const {id} = useParams()
     const url = `https://linear-graphic.herokuapp.com/portfolio/${id}`
-    const { isLoading, data } = useQuery(['React-codes-sneppet'], () =>
+    const { isLoading, data } = useQuery(['portpolio Single one'], () =>
         fetch(url)
             .then(res => res.json()
             )
@@ -17,7 +17,7 @@ const PortfolioFull = () => {
     return (
         <div>
             {
-                data?.images?.map((img , index) =>  <img key={img.index} src={img.image} alt="" />)
+                data?.images?.map((img , index) =>  <img key={img.image} src={img.image} alt="" />)
             }
            
         </div>

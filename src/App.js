@@ -12,6 +12,9 @@ import Dashboard from './Components/Dashboard/Dashboard';
 import AddPortfolio from './Components/Dashboard/AddPortfolio';
 import Portfolio from './Components/Portfolio/Portfolio';
 import PortfolioFull from './Components/Portfolio/PortfolioFull';
+import Footer from './Components/Footer/Footer';
+import Review from './Components/Review/Review';
+import AddReview from './Components/Dashboard/AddReview';
 
 function App() {
   return (
@@ -34,6 +37,10 @@ function App() {
           <Navbar />
           <PortfolioFull />
         </>} />
+        <Route path='/review' element={<>
+          <Navbar />
+          <Review />
+        </>} />
         <Route path='/login' element={<>
           <Navbar />
           <Login />
@@ -45,9 +52,10 @@ function App() {
         <Route path='/dashboard' element={<Dashboard />}>
           <Route path='admin' element={<Dashboard />} />
           <Route path='add-portfolio' element={<AddPortfolio />} />
+          <Route path='add-review' element={<AddReview />} />
         </Route>
       </Routes>
-
+      <Footer />
       <ToastContainer />
     </div>
   );

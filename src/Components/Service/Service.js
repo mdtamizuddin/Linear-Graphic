@@ -4,7 +4,7 @@ import ServiceCard from './ServiceCard'
 
 const Service = () => {
     const url = 'https://linear-graphic.herokuapp.com/service'
-    const { isLoading, data } = useQuery(['React-codes-sneppet'], () =>
+    const { isLoading, data } = useQuery(['services'], () =>
         fetch(url)
             .then(res => res.json()
             )

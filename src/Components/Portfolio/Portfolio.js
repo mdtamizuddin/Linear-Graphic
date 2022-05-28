@@ -19,7 +19,7 @@ const Portfolio = () => {
         return <h1>loading ..</h1>
     }
     return (
-        <div className='container mx-auto py-16'>
+        <div className='container mx-auto py-16 px-5 lg:px-0 md:px-0'>
             <h1 className="text-center text-5xl mb-16 font-bold">Our Letest Works</h1>
             <div className='grid grid-cols-1 w-full lg:grid-cols-3 md:grid-cols-2 gap-7'>
             {
