@@ -16,7 +16,7 @@ const Signup = () => {
         const formData = new FormData();
         formData.append('image', data.avater[0]);
 
-        const url = `https://api.imgbb.com/1/upload?key=3c0561dfb179ef4d990d0826ae879956`
+        const url = `https://api.imgbb.com/1/upload?key=1483e8863ef155b9c5094f8292f7500a`
         console.log(url);
         const displayName = data.name
         const email = data.email
