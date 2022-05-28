@@ -16,7 +16,7 @@ const Login = () => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                fetch(`https://linear-graphic-server.vercel.app/users/${user.email}`, {
+                fetch(`https://linear-graphic.herokuapp.com/users/${user.email}`, {
                     method: "put",
                     headers: {
                         'content-type': 'application/json'
@@ -28,6 +28,7 @@ const Login = () => {
                 })
                     .then(res => res.json())
                     .then(json => {
+                        localStorage.setItem('Token' , json.token)
                         reset()
                         setLoading(false)
                     })

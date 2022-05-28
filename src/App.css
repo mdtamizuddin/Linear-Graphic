@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.port-card:hover .port-overlay{
+    display: flex;
+}
+.port-overlay{
+    transition: 0.9s all ease-in-out;
+}
+.port-card {
+    background-position: center;
+    background-size: cover;
+}

@@ -17,7 +17,6 @@ const Signup = () => {
         formData.append('image', data.avater[0]);
 
         const url = `https://api.imgbb.com/1/upload?key=1483e8863ef155b9c5094f8292f7500a`
-        console.log(url);
         const displayName = data.name
         const email = data.email
         const password = data.password
@@ -33,7 +32,7 @@ const Signup = () => {
                     .then((userCredential) => {
                         // Signed in 
                         const user = userCredential.user;
-                        fetch(`https://linear-graphic-server.vercel.app/users/${user.email}`, {
+                        fetch(`https://linear-graphic.herokuapp.com/users/${user.email}`, {
                             method: "put",
                             headers: {
                                 'content-type': 'application/json'
@@ -45,6 +44,7 @@ const Signup = () => {
                         })
                             .then(res => res.json())
                             .then(json => {
+                                localStorage.setItem('Token' , json.token)
                                 reset()
                                 setLoading(false)
                                 updateProfile(auth.currentUser, {

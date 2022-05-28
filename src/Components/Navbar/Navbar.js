@@ -40,8 +40,8 @@ const Navbar = () => {
                             </label>
                             <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                                 <li>
-                                    <Link to={'/'} className="justify-between">
-                                        Profile
+                                    <Link to={'/dashboard'} className="justify-between">
+                                        Dashboard
                                         <span className="badge">New</span>
                                     </Link>
                                 </li>
@@ -67,6 +67,7 @@ const Navigations = () => {
         <>
             <li className='mx-2 '><NavLink to='/'>Home</NavLink></li>
             <li className='mx-2'><NavLink to='/service'>Service</NavLink></li>
+            <li className='mx-2'><NavLink to='/portfolio'>Portfolio</NavLink></li>
             <li className='mx-2'><NavLink to='/pricing'>Pricing</NavLink></li>
             <li className='mx-2'><NavLink to='/review'>Tastimonial</NavLink></li>
             <li className='mx-2'><NavLink to='/contact'>Contact</NavLink></li>
