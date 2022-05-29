@@ -1,10 +1,11 @@
 import React from 'react'
 import { useQuery } from 'react-query'
+
 import ReviewCard from './ReviewCard'
 
 const Review = () => {
     const url = 'https://linear-graphic.herokuapp.com/review'
-    const { isLoading, data, refetch } = useQuery(['reviews'], () =>
+    const { isLoading, data } = useQuery(['reviews'], () =>
         fetch(url, {
             method: 'get',
             headers: {

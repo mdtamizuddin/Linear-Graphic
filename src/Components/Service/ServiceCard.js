@@ -5,8 +5,8 @@ const ServiceCard = ({ service }) => {
     const { description, name, image } = service
     return (
         <div>
-            <div className="card overflow-visible card-compact  roudede-none relative w-96 bg-base-100 shadow-md">
-                <figure><img src={image} alt="Shoes" /></figure>
+            <div className="card w-full overflow-visible  roudede-none relative lg:w-96 bg-base-100 shadow-md">
+                <figure><img className='w-full' src={image} alt="Shoes" /></figure>
                 <div className="card-body  roudede-none">
 
                     <p>{description}</p>

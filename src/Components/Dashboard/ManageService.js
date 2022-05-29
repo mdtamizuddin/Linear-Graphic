@@ -1,0 +1,112 @@
+import React, { useState } from 'react'
+import { useQuery } from 'react-query'
+import { toast } from 'react-toastify'
+
+const ManageService = () => {
+    const [show, setShow] = useState(false)
+    const [portfolio, setPortfolio] = useState({})
+    const url = 'https://linear-graphic.herokuapp.com/service'
+    const { isLoading, data, refetch } = useQuery(['services-manage'], () =>
+        fetch(url, {
+            method: 'get',
+            headers: {
+                auth: localStorage.getItem('Token')
+            }
+        })
+            .then(res => res.json()
+            )
+    )
+    if (isLoading) {
+        return <h1>loading ...</h1>
+    }
+    return (
+        <div className='pt-10'>
+            <h1 className='text-center text-4xl my-5'>All Portfolios</h1>
+            <div className="overflow-x-auto">
+                {
+                    data.length > 0 ?
+                        <table className="table-compact w-full">
+                            {/* head */}
+                            <thead>
+                                <tr>
+                                    <th />
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Update</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    data.map((port, index) => <tr key={port._id}>
+                                        <th>{index + 1}</th>
+                                        <td>
+                                            <div className="avatar">
+                                                <div className="w-24 rounded">
+                                                    <img src={port.image} alt=''/>
+                                                </div>
+                                            </div>
+
+                                        </td>
+                                        <td>{port.name}</td>
+                                        <td><button className='btn w-full btn-primary'>Update</button></td>
+                                        <td><button onClick={() => {
+                                            setShow(true)
+                                            setPortfolio(port)
+                                        }} className='btn w-full btn-error'>Delete</button></td>
+                                    </tr>
+                                    )
+                                }
+                            </tbody>
+                        </table>
+                        :
+                        <h1 className='text-center text-red-600 text-2xl'>No Portfolio 0</h1>
+                }
+            </div>
+            <Modal show={show} setShow={setShow} portfolio={portfolio} refetch={refetch} />
+        </div>
+    )
+}
+
+export default ManageService
+
+const Modal = ({ show, setShow, portfolio, refetch }) => {
+
+    const detetPort = () => {
+        const id = portfolio._id
+        fetch(`https://linear-graphic.herokuapp.com/service/${id}`, {
+            method: "delete",
+            headers: {
+                auth: localStorage.getItem('Token')
+            }
+        }).then(res => {
+            if (res.status === 200) {
+                setShow(false)
+                toast.success('Deleted Success')
+                refetch()
+            }
+        })
+    }
+    return (
+        <div className={`modal-full ${show ? 'flex' : 'hidden'}`}>
+            <div className="flex flex-col max-w-md gap-2 p-6 rounded-md shadow-md dark:bg-gray-900 dark:text-gray-100">
+                <h2 className="flex items-center text-red-500 gap-2 text-xl font-semibold leading-tight tracking-wide">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-6 h-6 fill-current shrink-0 dark:text-violet-400">
+                        <path d="M451.671,348.569,408,267.945V184c0-83.813-68.187-152-152-152S104,100.187,104,184v83.945L60.329,348.568A24,24,0,0,0,81.432,384h86.944c-.241,2.636-.376,5.3-.376,8a88,88,0,0,0,176,0c0-2.7-.135-5.364-.376-8h86.944a24,24,0,0,0,21.1-35.431ZM312,392a56,56,0,1,1-111.418-8H311.418A55.85,55.85,0,0,1,312,392ZM94.863,352,136,276.055V184a120,120,0,0,1,240,0v92.055L417.137,352Z" />
+                        <rect width={32} height={136} x={240} y={112} />
+                        <rect width={32} height={32} x={240} y={280} />
+                    </svg>
+                    Delete Warning
+                </h2>
+                <p className="flex-1 text-red-400">Are You Sure You Want to Delete This Service</p>
+                <p className="text-primary">
+                    Name : {portfolio.name}
+                </p>
+                <div className="flex flex-col justify-end gap-3 mt-6 sm:flex-row">
+                    <button onClick={() => setShow(false)} className="px-6 py-2 rounded-lg shadow-sm  btn-success btn btn-sm">No</button>
+                    <button onClick={detetPort} className="px-6 py-2 rounded-lg shadow-sm  btn-error btn btn-sm">Yes</button>
+                </div>
+            </div>
+        </div>
+    )
+}

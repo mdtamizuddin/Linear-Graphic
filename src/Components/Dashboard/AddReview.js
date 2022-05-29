@@ -41,7 +41,7 @@ const AddReview = () => {
                 <div className="profile flex my-3 items-center">
                     <div class="avatar">
                         <div class="w-16 rounded-full">
-                            <img src={user.photoURL} />
+                            <img src={user.photoURL} alt=''/>
                         </div>
                     </div>
                     <div className="info ml-3">

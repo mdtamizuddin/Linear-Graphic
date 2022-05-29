@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import auth from '../firebase/firebase.init';
+import auth from '../firebase/firebase.init'
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Social = () => {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
+    const location = useLocation()
+    const pathname = location?.state?.from || '/'
     const signin = () => {
         setLoading(true)
         const provider = new GoogleAuthProvider();
@@ -28,6 +30,7 @@ const Social = () => {
                     .then(json => {
                         localStorage.setItem('Token' , json.token)
                         setLoading(false)
+                        navigate(pathname)
                     })
             }).catch((error) => {
                 const errorCode = error.code;

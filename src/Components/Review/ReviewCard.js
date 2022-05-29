@@ -2,7 +2,7 @@ import { Rating } from '@mui/material';
 import React, { useState } from 'react'
 
 const ReviewCard = ({ review }) => {
-
+    
     return (
         <div>
             <div className="card w-full bg-base-100 shadow-2xl">

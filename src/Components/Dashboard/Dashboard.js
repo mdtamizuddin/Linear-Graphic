@@ -1,7 +1,8 @@
 import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import auth from '../firebase/firebase.init'
+import { signOut } from 'firebase/auth'
 
 const Dashboard = () => {
     const [user , loading] = useAuthState(auth)
@@ -14,7 +15,9 @@ const Dashboard = () => {
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content relative flex flex-col">
                     <Outlet />
-                    <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
+                    <label  htmlFor="my-drawer-2" className="btn btn-neutral z-50 fixed top-10 left-0 drawer-button lg:hidden">
+                    <i className="fa-solid fa-bars"></i>
+                    </label>
                 </div>
                 <div className="drawer-side shadow">
                     <label htmlFor="my-drawer-2" className="drawer-overlay" />
@@ -37,17 +40,22 @@ const Dashboard = () => {
 export default Dashboard
 
 const Navigations = () => {
+    const navigate = useNavigate()
     return (
         <>
-            <li><Link to='profile'>Profile</Link></li>
-            <li><Link to='portfolio'>Manage Portfolio</Link></li>
+            <li><Link to='users'>Users</Link></li>
+            <li><Link to='portfolios'>Manage Portfolio</Link></li>
             <li><Link to='add-portfolio'>Add a Portfolio</Link></li>
             <li><Link to='add-review'>Add a Review</Link></li>
             <li><Link to='services'>Manage Services</Link></li>
             <li><Link to='headers'>Headers</Link></li>
+            
             <li><Link to='pricing'>Pricing</Link></li>
             <li><Link to='/' className='btn btn-primary text-white mt-5'>Go Home</Link></li>
-            <li><button className='btn btn-primary text-white mt-5'>Log Out</button></li>
+            <li><button onClick={()=>  {
+                signOut(auth)
+                navigate('/login')
+            }} className='btn btn-primary text-white mt-5'>Log Out</button></li>
         </>
     )
 }

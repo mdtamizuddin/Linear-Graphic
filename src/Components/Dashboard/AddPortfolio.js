@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import storage from '../firebase/firebaseStorage';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 
 const AddPortfolio = () => {
+    const [progress, setProgress] = useState(0)
     const [image, setImage] = useState([])
-    const [error, setError] = useState('')
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const onSubmit = async (data) => {
         const name = data.name
@@ -48,7 +49,7 @@ const AddPortfolio = () => {
                                 </div>
 
                                 {
-                                    image.map((img, index) => <div className="form-control">
+                                    image.map((img, index) => <div key={index} className="form-control">
                                         <span className="label-text">Image : {index + 1}</span>
                                         <input
                                             {...register(`image${index}`, { required: true, value: img.image })}
@@ -58,13 +59,12 @@ const AddPortfolio = () => {
 
                                     )
                                 }
-                                <p className='text-red-500 mt-3'>{error?.code}</p>
                                 <div className="form-control mt-6">
                                     <button type='submit' className="btn btn-primary">Add Portfolio</button>
                                 </div>
 
                             </form>
-                            <ImageUpload image={image} setImage={setImage} />
+                            <ImageUpload image={image} setImage={setImage} progress={progress} setProgress={setProgress} />
                         </div>
                     </div>
                 </div>
@@ -80,27 +80,31 @@ export default AddPortfolio
 
 
 
-const ImageUpload = ({ image, setImage }) => {
+const ImageUpload = ({ image, setImage, progress, setProgress }) => {
     const [loading, setLoading] = useState(false)
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit , reset} = useForm();
     const onSubmit = async (data) => {
         setLoading(true)
-        const formData = new FormData();
-        formData.append('image', data.image[0])
-
-        fetch(`https://api.imgbb.com/1/upload?key=1483e8863ef155b9c5094f8292f7500a`, {
-            method: "POST",
-            body: formData
-        })
-            .then(res => res.json())
-            .then((result) => {
-                const photoURL = result.data.url
-                setImage([...image, { image: photoURL }])
-                setLoading(false)
+        const file = data.file[0]
+        const fileName =  Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 50)
+        const storageRef = ref(storage, `/file/${fileName}-${file.name}`)
+        const uploadTask = uploadBytesResumable(storageRef, file)
+        uploadTask.on("state_changed", (snapshot) => {
+            const prog = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+            setProgress(prog)
+        },
+            (err) => console.log(err),
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref)
+                    .then(url => {
+                        setImage([...image, { image: url }])
+                        setLoading(false)
+                        reset()
+                    })
             }
-            )
+        )
     }
-    console.log(image);
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-control">
@@ -108,11 +112,17 @@ const ImageUpload = ({ image, setImage }) => {
                     <span className="label-text">Images</span>
                 </label>
                 <input type='file'
-                    {...register("image", { required: true, maxLength: 20 })}
+                    {...register("file", { required: true, maxLength: 20 })}
                     className="input p-2 input-bordered" multiple />
                 <button type='submit' className={`btn btn-sm mt-4 ${loading && 'loading'}`}>Upload</button>
                 <p className='text-red-500 mt-2 ml-2'>{errors.image?.type === 'required' && "Your Image"} </p>
             </div>
+           {
+               progress ?
+               <progress className="progress w-full progress-secondary" value={progress} max="100"></progress>
+                :
+                ''
+           }
         </form>
     )
 }

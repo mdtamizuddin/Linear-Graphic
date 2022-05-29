@@ -19,7 +19,7 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <Link to='/' className="btn btn-ghost normal-case text-xl">
-                        <img src={logo} alt="" />
+                        <img className='logo' src={logo} alt="" />
                     </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
@@ -68,7 +68,7 @@ const Navigations = () => {
             <li className='mx-2 '><NavLink to='/'>Home</NavLink></li>
             <li className='mx-2'><NavLink to='/service'>Service</NavLink></li>
             <li className='mx-2'><NavLink to='/portfolio'>Portfolio</NavLink></li>
-            <li className='mx-2'><NavLink to='/pricing'>Pricing</NavLink></li>
+            <li className='mx-2'><NavLink to='/pricing/monthly'>Pricing</NavLink></li>
             <li className='mx-2'><NavLink to='/review'>Tastimonial</NavLink></li>
             <li className='mx-2'><NavLink to='/contact'>Contact</NavLink></li>
         </>
