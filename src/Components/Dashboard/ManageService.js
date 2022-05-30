@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { useQuery } from 'react-query'
 import { toast } from 'react-toastify'
+import Loading from '../Loading/Loading'
+import storage from '../firebase/firebaseStorage';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 
 const ManageService = () => {
     const [show, setShow] = useState(false)
-    const [portfolio, setPortfolio] = useState({})
+    const [upShow, setUpShow] = useState(false)
+    const [service, setPortfolio] = useState({})
     const url = 'https://linear-graphic.herokuapp.com/service'
     const { isLoading, data, refetch } = useQuery(['services-manage'], () =>
         fetch(url, {
@@ -17,7 +22,7 @@ const ManageService = () => {
             )
     )
     if (isLoading) {
-        return <h1>loading ...</h1>
+        return <Loading />
     }
     return (
         <div className='pt-10'>
@@ -43,13 +48,18 @@ const ManageService = () => {
                                         <td>
                                             <div className="avatar">
                                                 <div className="w-24 rounded">
-                                                    <img src={port.image} alt=''/>
+                                                    <img src={port.image} alt='' />
                                                 </div>
                                             </div>
 
                                         </td>
                                         <td>{port.name}</td>
-                                        <td><button className='btn w-full btn-primary'>Update</button></td>
+                                        <td><button onClick={() => {
+                                            setUpShow(true)
+                                            setPortfolio(port)
+                                        }}
+                                            className='btn w-full btn-primary'>Update</button>
+                                        </td>
                                         <td><button onClick={() => {
                                             setShow(true)
                                             setPortfolio(port)
@@ -63,14 +73,18 @@ const ManageService = () => {
                         <h1 className='text-center text-red-600 text-2xl'>No Portfolio 0</h1>
                 }
             </div>
-            <Modal show={show} setShow={setShow} portfolio={portfolio} refetch={refetch} />
+            <ModalDelete show={show} setShow={setShow} portfolio={service} refetch={refetch} />
+            {
+                service &&
+                <ModalUpdate setUpShow={setUpShow} upShow={upShow} service={service} refetch={refetch} />
+            }
         </div>
     )
 }
 
 export default ManageService
 
-const Modal = ({ show, setShow, portfolio, refetch }) => {
+const ModalDelete = ({ show, setShow, portfolio, refetch }) => {
 
     const detetPort = () => {
         const id = portfolio._id
@@ -106,6 +120,88 @@ const Modal = ({ show, setShow, portfolio, refetch }) => {
                     <button onClick={() => setShow(false)} className="px-6 py-2 rounded-lg shadow-sm  btn-success btn btn-sm">No</button>
                     <button onClick={detetPort} className="px-6 py-2 rounded-lg shadow-sm  btn-error btn btn-sm">Yes</button>
                 </div>
+            </div>
+        </div>
+    )
+}
+
+const ModalUpdate = ({ upShow, setUpShow, service, refetch }) => {
+    const [loading, setLoading] = useState(false)
+    const { register, formState: { errors }, handleSubmit } = useForm();
+    const onSubmit = (data) => {
+        setLoading(true)
+        const file = data.image[0]
+        const fileName = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 50)
+        const storageRef = ref(storage, `/file/${fileName}-${file.name}`)
+        const uploadTask = uploadBytesResumable(storageRef, file)
+        uploadTask.on("state_changed", (snapshot) => {
+            const prog = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+            console.log(prog);
+        },
+            (err) => console.log(err),
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref)
+                    .then(url => {
+                        fetch(`https://linear-graphic.herokuapp.com/service/${service._id}`, {
+                            method: 'put',
+                            headers: {
+                                'content-type': 'application/json',
+                                auth: localStorage.getItem('Token')
+                            },
+                            body: JSON.stringify({ name: data.name, description: data.description, image: url })
+                        }).then(res => {
+                            if (res.status === 200) {
+                                refetch()
+                                setUpShow(false)
+                            }
+                        })
+                    })
+            }
+        )
+    }
+    return (
+        <div className={`modal-full ${upShow ? 'flex' : 'hidden'}`}>
+            <div className="flex flex-col max-w-md gap-2 p-6 rounded-md shadow-md dark:bg-gray-900 dark:text-gray-100 relative">
+            <button onClick={()=> setUpShow(false)} className='btn btn-error btn-sm absolute right-0 top-0'>close</button>
+                <form onSubmit={handleSubmit(onSubmit)} className="card-body lg:w-96">
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Name</span>
+                        </label>
+                        <input
+                            defaultValue={service.name}
+                            {...register("name", { required: true, value: service.name })}
+                            className="input input-bordered" type='text' />
+                        <p className='text-red-500 mt-2 ml-2'>{errors.name?.type === 'required' && "Name is required"} </p>
+                    </div>
+
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Description</span>
+                        </label>
+                        <textarea
+                            defaultValue={service.description}
+                            {...register("description", { required: true, value: service.description })}
+                            className="input input-bordered h-44" type='text' />
+                        <p className='text-red-500 mt-2 ml-2'>{errors.description?.type === 'required' && "Description is required"} </p>
+                    </div>
+                    <div className="avatar">
+                        <div className="w-20 rounded">
+                            <img src={service.image} alt="Tailwind-CSS-Avatar-component" />
+                        </div>
+                    </div>
+
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Image</span>
+                        </label>
+                        <input
+                            {...register("image", { required: true })}
+                            className="input input-bordered p-2" type='file' />
+                        <p className='text-red-500 mt-2 ml-2'>{errors.image?.type === 'required' && "Image is required"} </p>
+                    </div>
+                    <button type='submit' className='btn btn-secondary'>Update</button>
+                </form>
             </div>
         </div>
     )

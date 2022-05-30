@@ -1,5 +1,5 @@
 
-import {  Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
 import Login from './Components/User/Login';
@@ -21,6 +21,8 @@ import ScrollToTop from "react-scroll-to-top";
 import Monthly from './Components/Pricing/Monthly'
 import Yearly from './Components/Pricing/Yearly'
 import ManagePortfolio from './Components/Dashboard/ManagePortfolio';
+import PricingDash from './Components/Dashboard/Pricing';
+import Monthly2 from './Components/Dashboard/Pricing/Monthly';
 import User from './Components/Dashboard/User';
 import ManageService from './Components/Dashboard/ManageService';
 import RequireAuth from './Components/RequireAuth/RequireAuth';
@@ -28,6 +30,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from './Components/firebase/firebase.init';
 import { useEffect, useState } from 'react';
 import NotFound from './Components/NotFound/NotFound';
+import Loading from './Components/Loading/Loading';
 function App() {
   const [currentUser, setUser] = useState({ role: 'am-public' })
   const [user, loading] = useAuthState(auth);
@@ -39,7 +42,7 @@ function App() {
     }
   }, [user])
   if (loading) {
-    return <h1>Loading ...</h1>
+    return <Loading />
   }
   return (
     <div className='main-app'>
@@ -104,10 +107,11 @@ function App() {
               <Route path='add-portfolio' element={<AddPortfolio />} />
               <Route path='add-review' element={<AddReview />} />
               <Route path='portfolios' element={<ManagePortfolio />} />
-
-
+              <Route path='pricing' element={<PricingDash />} >
+              <Route path='monthly' element={<Monthly2 />} />
+              <Route path='yearly' element={<PricingDash />} />
+              </Route>
             </Route>
-
             :
             ''
         }

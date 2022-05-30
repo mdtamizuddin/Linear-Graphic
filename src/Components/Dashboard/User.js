@@ -1,5 +1,6 @@
 import React from 'react'
 import { useQuery } from 'react-query'
+import Loading from '../Loading/Loading'
 const User = () => {
     const url = 'https://linear-graphic.herokuapp.com/users'
     const { isLoading, data, refetch } = useQuery(['users'], () =>
@@ -39,7 +40,7 @@ const User = () => {
             })
     }
     if (isLoading) {
-        return <h1>loading ...</h1>
+        return <Loading />
     }
     return (
         <div>

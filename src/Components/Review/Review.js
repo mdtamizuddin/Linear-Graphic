@@ -1,11 +1,12 @@
 import React from 'react'
 import { useQuery } from 'react-query'
+import Loading from '../Loading/Loading'
 
 import ReviewCard from './ReviewCard'
 
 const Review = () => {
     const url = 'https://linear-graphic.herokuapp.com/review'
-    const { isLoading, data } = useQuery(['reviews'], () =>
+    const { isLoading, data } = useQuery(['reviews-all'], () =>
         fetch(url, {
             method: 'get',
             headers: {
@@ -16,7 +17,7 @@ const Review = () => {
             )
     )
     if (isLoading) {
-        return <h1>loading ...</h1>
+        return <Loading />
     }
     return (
         <div className='container mx-auto'>

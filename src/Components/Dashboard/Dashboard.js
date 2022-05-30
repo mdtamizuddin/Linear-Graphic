@@ -3,11 +3,12 @@ import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import auth from '../firebase/firebase.init'
 import { signOut } from 'firebase/auth'
+import Loading from '../Loading/Loading'
 
 const Dashboard = () => {
     const [user , loading] = useAuthState(auth)
     if (loading) {
-        return <h1>loading ...</h1>
+        return <Loading />
     }
     return (
         <div>
@@ -50,7 +51,7 @@ const Navigations = () => {
             <li><Link to='services'>Manage Services</Link></li>
             <li><Link to='headers'>Headers</Link></li>
             
-            <li><Link to='pricing'>Pricing</Link></li>
+            <li><Link to='pricing/monthly'>Pricing</Link></li>
             <li><Link to='/' className='btn btn-primary text-white mt-5'>Go Home</Link></li>
             <li><button onClick={()=>  {
                 signOut(auth)

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
+import Loading from '../Loading/Loading';
 
 const PortfolioFull = () => {
     const {id} = useParams()
@@ -11,7 +12,7 @@ const PortfolioFull = () => {
             )
     )
     if (isLoading) {
-        return <h1>loading..</h1>
+        return <Loading />
     }
 
     return (

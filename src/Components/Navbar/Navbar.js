@@ -4,8 +4,12 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import auth from '../firebase/firebase.init'
 import logo from './logo.png'
 import { signOut } from 'firebase/auth'
+import Loading from '../Loading/Loading'
 const Navbar = () => {
-    const [user] = useAuthState(auth)
+    const [user , loading] = useAuthState(auth)
+    if (loading) {
+        return <Loading />
+    }
     return (
         <div className='shadow '>
             <div className="navbar container mx-auto bg-base-100">

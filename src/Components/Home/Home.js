@@ -9,6 +9,7 @@ import ReviewCard from '../Review/ReviewCard'
 import { AnimationOnScroll } from 'react-animation-on-scroll'
 import PortfolioCard from '../Portfolio/PortfolioCard'
 import { Link } from 'react-router-dom'
+import Loading from '../Loading/Loading'
 const Home = () => {
     const url = 'https://linear-graphic.herokuapp.com/review'
     const { isLoading, data } = useQuery(['reviews'], () =>
@@ -34,7 +35,7 @@ const Home = () => {
     )
 
     if (isLoading || portLoading) {
-        return <h1>loading ..</h1>
+        return <Loading />
     }
     return (
         <div>

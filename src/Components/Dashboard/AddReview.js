@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { toast } from 'react-toastify'
 import auth from '../firebase/firebase.init'
+import Loading from '../Loading/Loading'
 const AddReview = () => {
     const [value, setValue] = useState(0)
     const [user, loading] = useAuthState(auth)
@@ -32,7 +33,7 @@ const AddReview = () => {
 
 
     if (loading) {
-        return <h1>Loading ...</h1>
+        return <Loading />
     }
 
     return (
@@ -58,7 +59,7 @@ const AddReview = () => {
                     }}
                 />
                 <textarea name='description' type="text" placeholder="Type here" class="input input-bordered w-full h-64 mt-5 max-w-full" />
-                <button className='btn btn-primary mt-5'>Submit Review</button>
+                <button className='btn btn-secondary mt-5'>Submit Review</button>
             </form>
         </div>
     )

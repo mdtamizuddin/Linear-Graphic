@@ -35,7 +35,7 @@ const AddPortfolio = () => {
                     <div className="card w-full max-w-md shadow-2xl bg-base-100">
                         <div className="card-body">
 
-
+                            <h1 className='text-center text-primary text-2xl'>Add A Portfolio</h1>
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <div className="form-control">
                                     <label className="label">
@@ -60,7 +60,7 @@ const AddPortfolio = () => {
                                     )
                                 }
                                 <div className="form-control mt-6">
-                                    <button type='submit' className="btn btn-primary">Add Portfolio</button>
+                                    <button type='submit' className="btn btn-secondary">Add Portfolio</button>
                                 </div>
 
                             </form>
