@@ -15,7 +15,7 @@ const Monthly = () => {
 
     return (
         <div className=''>
-            <div className="grid grid-cols-3 w-full lg:gap-10">
+            <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 w-full lg:gap-10">
 
                 <div className="p-4  w-full">
                     <div className="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden">

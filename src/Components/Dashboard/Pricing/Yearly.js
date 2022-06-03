@@ -3,9 +3,9 @@ import { useForm } from 'react-hook-form'
 import { useQuery } from 'react-query'
 import Loading from '../../Loading/Loading'
 
-const Monthly = () => {
-    const url = `https://linear-graphic.herokuapp.com/pricingMonthly/`
-    const { isLoading, data } = useQuery(['pricing monthly'], () =>
+const Yearly = () => {
+    const url = `https://linear-graphic.herokuapp.com/pricingYearly/`
+    const { isLoading, data } = useQuery(['pricing yearly'], () =>
         fetch(url)
             .then(res => res.json()
             )
@@ -36,4 +36,4 @@ const Monthly = () => {
     )
 }
 
-export default Monthly
+export default Yearly

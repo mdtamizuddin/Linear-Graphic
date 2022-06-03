@@ -49,7 +49,7 @@ const Navigations = () => {
             <li><Link to='add-portfolio'>Add a Portfolio</Link></li>
             <li><Link to='add-review'>Add a Review</Link></li>
             <li><Link to='services'>Manage Services</Link></li>
-            <li><Link to='headers'>Headers</Link></li>
+            <li><Link to='messages'>Messages</Link></li>
             
             <li><Link to='pricing/monthly'>Pricing</Link></li>
             <li><Link to='/' className='btn btn-primary text-white mt-5'>Go Home</Link></li>

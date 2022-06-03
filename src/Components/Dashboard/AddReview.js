@@ -30,8 +30,6 @@ const AddReview = () => {
 
         })
     }
-
-
     if (loading) {
         return <Loading />
     }

@@ -76,7 +76,7 @@ const ManageService = () => {
             <ModalDelete show={show} setShow={setShow} portfolio={service} refetch={refetch} />
             {
                 service &&
-                <ModalUpdate setUpShow={setUpShow} upShow={upShow} service={service} refetch={refetch} />
+                <ModalUpdate setUpShow={setUpShow} upShow={upShow} service={service} refetch={refetch} setService={setPortfolio}/>
             }
         </div>
     )
@@ -125,44 +125,68 @@ const ModalDelete = ({ show, setShow, portfolio, refetch }) => {
     )
 }
 
-const ModalUpdate = ({ upShow, setUpShow, service, refetch }) => {
+const ModalUpdate = ({ upShow, setUpShow, service, refetch , setService}) => {
     const [loading, setLoading] = useState(false)
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit , reset } = useForm();
     const onSubmit = (data) => {
         setLoading(true)
-        const file = data.image[0]
-        const fileName = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 50)
-        const storageRef = ref(storage, `/file/${fileName}-${file.name}`)
-        const uploadTask = uploadBytesResumable(storageRef, file)
-        uploadTask.on("state_changed", (snapshot) => {
-            const prog = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
-            console.log(prog);
-        },
-            (err) => console.log(err),
-            () => {
-                getDownloadURL(uploadTask.snapshot.ref)
-                    .then(url => {
-                        fetch(`https://linear-graphic.herokuapp.com/service/${service._id}`, {
-                            method: 'put',
-                            headers: {
-                                'content-type': 'application/json',
-                                auth: localStorage.getItem('Token')
-                            },
-                            body: JSON.stringify({ name: data.name, description: data.description, image: url })
-                        }).then(res => {
-                            if (res.status === 200) {
-                                refetch()
-                                setUpShow(false)
-                            }
+        if (data.image[0]) {
+            const file = data.image[0]
+            const fileName = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 50)
+            const storageRef = ref(storage, `/file/${fileName}-${file.name}`)
+            const uploadTask = uploadBytesResumable(storageRef, file)
+            uploadTask.on("state_changed", (snapshot) => {
+                const prog = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+                console.log(prog);
+            },
+                (err) => console.log(err),
+                () => {
+                    getDownloadURL(uploadTask.snapshot.ref)
+                        .then(url => {
+                            fetch(`https://linear-graphic.herokuapp.com/service/${service._id}`, {
+                                method: 'put',
+                                headers: {
+                                    'content-type': 'application/json',
+                                    auth: localStorage.getItem('Token')
+                                },
+                                body: JSON.stringify({ name: data.name, description: data.description, image: url })
+                            }).then(res => {
+                                if (res.status === 200) {
+                                    setLoading(false)
+                                    refetch()
+                                    setUpShow(false)
+                                    toast.success('Service Updated')
+                                    reset()
+                                    setService({})
+                                }
+                            })
                         })
-                    })
-            }
-        )
+                }
+            )
+        }
+        else {
+            fetch(`https://linear-graphic.herokuapp.com/service/${service._id}`, {
+                method: 'put',
+                headers: {
+                    'content-type': 'application/json',
+                    auth: localStorage.getItem('Token')
+                },
+                body: JSON.stringify({ name: data.name, description: data.description, image: service.image })
+            }).then(res => {
+                if (res.status === 200) {
+                    refetch()
+                    setUpShow(false)
+                    setLoading(false)
+                    toast.success('data Updated')
+                    setService({})
+                }
+            })
+        }
     }
     return (
         <div className={`modal-full ${upShow ? 'flex' : 'hidden'}`}>
             <div className="flex flex-col max-w-md gap-2 p-6 rounded-md shadow-md dark:bg-gray-900 dark:text-gray-100 relative">
-            <button onClick={()=> setUpShow(false)} className='btn btn-error btn-sm absolute right-0 top-0'>close</button>
+                <button onClick={() => setUpShow(false)} className='btn btn-error btn-sm absolute right-0 top-0'>close</button>
                 <form onSubmit={handleSubmit(onSubmit)} className="card-body lg:w-96">
                     <div className="form-control">
                         <label className="label">
@@ -196,11 +220,10 @@ const ModalUpdate = ({ upShow, setUpShow, service, refetch }) => {
                             <span className="label-text">Image</span>
                         </label>
                         <input
-                            {...register("image", { required: true })}
+                            {...register("image")}
                             className="input input-bordered p-2" type='file' />
-                        <p className='text-red-500 mt-2 ml-2'>{errors.image?.type === 'required' && "Image is required"} </p>
                     </div>
-                    <button type='submit' className='btn btn-secondary'>Update</button>
+                    <button type='submit' className={`btn btn-secondary ${loading && 'loading'}`}>Update</button>
                 </form>
             </div>
         </div>

@@ -1,51 +1,93 @@
+
+
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import storage from '../firebase/firebaseStorage';
-
+import dateNow from '../Hooks/useDate'
 
 const Contact = () => {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm();
     const [loading, setLoading] = useState(false)
     const onSubmit = (data) => {
         setLoading(true)
-        const file = data.file[0]
-        const storageRef = ref(storage, `/file/${file.name}`)
-        const uploadTask = uploadBytesResumable(storageRef, file)
-        uploadTask.on("state_changed", (snapshot) => {
-            const prog = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
-            console.log(prog)
-        },
-            (err) => {
-                console.log(err)
-                setLoading(false)
+        if (data.file[0]) {
+            const file = data.file[0]
+            const storageRef = ref(storage, `/file/${file.name}`)
+            const uploadTask = uploadBytesResumable(storageRef, file)
+            uploadTask.on("state_changed", (snapshot) => {
+                const prog = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+                console.log(prog)
             },
-            () => {
-                getDownloadURL(uploadTask.snapshot.ref)
-                    .then(url => {
-                        
-                        fetch('https://linear-graphic.herokuapp.com/sendMail/contact', {
-                            method: "post",
-                            headers: {
-                                'content-type': 'application/json'
-                            },
-                            body: JSON.stringify({ image: url, email: data.email, message: data.message, subject: data.subject })
-                        }).then(res => {
-                            if (res.status === 200) {
-                                setLoading(false)
-                                toast.success('Your Message Send Success')
+                (err) => {
+                    console.log(err)
+                    setLoading(false)
+                },
+                () => {
+                    getDownloadURL(uploadTask.snapshot.ref)
+                        .then(url => {
+
+                            fetch('https://linear-graphic.herokuapp.com/sendMail/contact', {
+                                method: "post",
+                                headers: {
+                                    'content-type': 'application/json'
+                                },
+                                body: JSON.stringify({ name: data.name, email: data.email, message: data.message, subject: data.subject })
+                            }).then(res => {
+                                if (res.status === 200) {
+                                    fetch('https://linear-graphic.herokuapp.com/message', {
+                                        method: 'post',
+                                        headers: {
+                                            'content-type': 'application/json',
+                                            auth: localStorage.getItem('Token')
+                                        },
+                                        body: JSON.stringify({ name: data.name, email: data.email, message: data.message, subject: data.subject, date: dateNow() })
+                                    })
+                                    setLoading(false)
+                                    toast.success('Your Message Send Success')
+                                    reset()
+                                }
+                                else {
+                                    setLoading(false)
+                                    toast.error('Message Not Sent')
+                                }
                             }
-                            else{
-                                setLoading(false)
-                                toast.error('Message Not Sent')
-                            }
-                        }
-                           
+
                             )
+                        })
+                }
+            )
+        }
+        else {
+            fetch('https://linear-graphic.herokuapp.com/sendMail/contact', {
+                method: "post",
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({ name: data.name, email: data.email, message: data.message, subject: data.subject })
+            }).then(res => {
+                if (res.status === 200) {
+                    fetch('https://linear-graphic.herokuapp.com/message', {
+                        method: 'post',
+                        headers: {
+                            'content-type': 'application/json',
+                            auth: localStorage.getItem('Token')
+                        },
+                        body: JSON.stringify({ name: data.name, email: data.email, message: data.message, subject: data.subject, date: dateNow() })
                     })
+                    setLoading(false)
+                    toast.success('Your Message Send Success')
+                    reset()
+                }
+                else {
+                    setLoading(false)
+                    toast.error('Message Not Sent')
+                }
             }
-        )
+
+            )
+        }
     }
     return (
         <div>
@@ -91,7 +133,7 @@ const Contact = () => {
                         </div>
                         <div className="relative mb-4">
                             <label htmlFor="email" className="leading-7 text-sm text-gray-600">File</label>
-                            <input type="file" name="file" {...register("file", { required: true })}
+                            <input type="file" name="file" {...register("file")}
                                 className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                         </div>
                         <button className={`${loading && 'loading'}  text-white btn btn-primary`}>Send Message</button>

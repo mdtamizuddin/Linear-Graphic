@@ -1,18 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap');
 
-.port-card:hover .port-overlay{
+.port-card:hover .port-overlay {
     display: flex;
 }
-.port-overlay{
+
+.port-overlay {
     transition: 0.9s all ease-in-out;
 }
+
 .port-card {
     background-position: center;
     background-size: cover;
 }
-.modal-full{
+
+.modal-full {
     position: absolute;
     top: 0;
     justify-content: center;
@@ -21,8 +25,37 @@
     height: 100vh;
     background-color: aliceblue;
 }
+
 @media only screen and (max-width: 450px) {
-    .logo{
+    .logo {
         width: 150px;
     }
-  }
+}
+
+@media only screen and (max-width: 1900px) {
+    .card-service {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .card-service {
+        width: 97%;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .card-service {
+        width: 97%;
+    }
+}
+
+.App{
+    font-family: 'Lato', sans-serif;
+}
+.header-font{
+    font-weight: 900;
+    font-family: 'Mulish', sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&family=Mulish:wght@900&display=swap');

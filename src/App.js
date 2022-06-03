@@ -23,6 +23,7 @@ import Yearly from './Components/Pricing/Yearly'
 import ManagePortfolio from './Components/Dashboard/ManagePortfolio';
 import PricingDash from './Components/Dashboard/Pricing';
 import Monthly2 from './Components/Dashboard/Pricing/Monthly';
+import Yearly2 from './Components/Dashboard/Pricing/Yearly';
 import User from './Components/Dashboard/User';
 import ManageService from './Components/Dashboard/ManageService';
 import RequireAuth from './Components/RequireAuth/RequireAuth';
@@ -31,6 +32,8 @@ import auth from './Components/firebase/firebase.init';
 import { useEffect, useState } from 'react';
 import NotFound from './Components/NotFound/NotFound';
 import Loading from './Components/Loading/Loading';
+import Headers from './Components/Dashboard/Headers';
+import Messages from './Components/Dashboard/Messages';
 function App() {
   const [currentUser, setUser] = useState({ role: 'am-public' })
   const [user, loading] = useAuthState(auth);
@@ -102,14 +105,17 @@ function App() {
               <Dashboard />
             </RequireAuth>}>
               <Route index element={<User />} />
+              <Route path='messages' element={<Messages />} />
               <Route path='users' element={<User />} />
               <Route path='services' element={<ManageService />} />
+              <Route path='headers' element={<Headers />} />
               <Route path='add-portfolio' element={<AddPortfolio />} />
               <Route path='add-review' element={<AddReview />} />
               <Route path='portfolios' element={<ManagePortfolio />} />
               <Route path='pricing' element={<PricingDash />} >
               <Route path='monthly' element={<Monthly2 />} />
-              <Route path='yearly' element={<PricingDash />} />
+              <Route path='yearly' element={<Yearly2 />} />
+              
               </Route>
             </Route>
             :
