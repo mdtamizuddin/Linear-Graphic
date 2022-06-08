@@ -5,7 +5,7 @@ const PortfolioCard = ({ portfolio }) => {
     return (
         <div>
              {/* <figure><img src={} alt="Shoes" /></figure> */}
-            <div style={{backgroundImage : `url(${portfolio.images[0]?.image})`, height: "420px" , width: '100%'}} className="relative port-card card card-compact w-full  bg-base-100 shadow-xl">
+            <div style={{backgroundImage : `url(${portfolio.images[0] ? portfolio.images[0].image : 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1280px-No_image_3x4.svg.png'})`, height: "420px" , width: '100%'}} className="relative port-card card card-compact w-full  bg-base-100 shadow-xl">
                
                 <div className="card-body">
 

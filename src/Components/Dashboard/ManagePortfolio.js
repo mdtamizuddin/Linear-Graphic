@@ -47,7 +47,7 @@ const ManagePortfolio = () => {
                                         <td>
                                             <div className="avatar">
                                                 <div className="w-24 rounded">
-                                                    <img src={port.images[0]?.image} alt='' />
+                                                    <img src={port.images[0] ? port.images[0].image : 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1280px-No_image_3x4.svg.png'} alt='' />
                                                 </div>
                                             </div>
 
@@ -156,7 +156,7 @@ const ModalUpdate = ({ upShow, setUpShow, portfolio, refetch }) => {
                             className="input input-bordered" type='text' />
                         <p className='text-red-500 mt-2 ml-2'>{errors.name?.type === 'required' && "Name is required"} </p>
                     </div>
-                    <button type='submit' className='btn btn-secondary'>Update</button>
+                    <button type='submit' className={`btn btn-secondary ${loading && 'loading'}`}>Update</button>
                 </form>
             </div>
         </div>

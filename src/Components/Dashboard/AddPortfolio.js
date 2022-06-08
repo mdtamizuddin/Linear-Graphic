@@ -7,26 +7,35 @@ import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 const AddPortfolio = () => {
     const [progress, setProgress] = useState(0)
     const [image, setImage] = useState([])
+    const [loading, setLoading] = useState(false)
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
-    console.log(image)
     const onSubmit = async (data) => {
+        setLoading(true)
         const name = data.name
         const images = image
-        fetch('https://linear-graphic.herokuapp.com/portfolio', {
-            method: 'Post',
-            headers: {
-                'content-type': 'application/json',
-                auth: localStorage.getItem('Token')
-            },
-            body: JSON.stringify({ name, images })
-        }).then(res => {
-            if (res.status === 200) {
-                reset()
-                toast.success('Portfolio Added')
-                setImage([])
-            }
+        if (image.length > 0) {
+            fetch('https://linear-graphic.herokuapp.com/portfolio', {
+                method: 'Post',
+                headers: {
+                    'content-type': 'application/json',
+                    auth: localStorage.getItem('Token')
+                },
+                body: JSON.stringify({ name, images })
+            }).then(res => {
+                setLoading(false)
+                if (res.status === 200) {
+                    reset()
+                    toast.success('Portfolio Added')
+                    setImage([])
+                }
 
-        })
+            })
+        }
+        else{
+            setLoading(false)
+            toast.error('Add Image Minimum 1 image')
+        }
+
     }
 
     return (
@@ -61,7 +70,7 @@ const AddPortfolio = () => {
                                     )
                                 }
                                 <div className="form-control mt-6">
-                                    <button type='submit' className="btn btn-secondary">Add Portfolio</button>
+                                    <button type='submit' className={`btn btn-secondary ${loading && 'loading'}`}>Add Portfolio</button>
                                 </div>
 
                             </form>
@@ -83,11 +92,11 @@ export default AddPortfolio
 
 const ImageUpload = ({ image, setImage, progress, setProgress }) => {
     const [loading, setLoading] = useState(false)
-    const { register, formState: { errors }, handleSubmit , reset} = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const onSubmit = async (data) => {
         setLoading(true)
         const file = data.file[0]
-        const fileName =  Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 50)
+        const fileName = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 50)
         const storageRef = ref(storage, `/file/${fileName}-${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file)
         uploadTask.on("state_changed", (snapshot) => {
@@ -118,12 +127,12 @@ const ImageUpload = ({ image, setImage, progress, setProgress }) => {
                 <button type='submit' className={`btn btn-sm mt-4 ${loading && 'loading'}`}>Upload</button>
                 <p className='text-red-500 mt-2 ml-2'>{errors.image?.type === 'required' && "Your Image"} </p>
             </div>
-           {
-               progress ?
-               <progress className="progress w-full progress-secondary" value={progress} max="100"></progress>
-                :
-                ''
-           }
+            {
+                progress ?
+                    <progress className="progress w-full progress-secondary" value={progress} max="100"></progress>
+                    :
+                    ''
+            }
         </form>
     )
 }

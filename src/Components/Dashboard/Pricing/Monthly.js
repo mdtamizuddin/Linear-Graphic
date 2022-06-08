@@ -10,7 +10,7 @@ const Monthly = () => {
             .then(res => res.json()
             )
     )
-    const { register, formState: { errors }, handleSubmit, reset } = useForm();
+    const { register,  handleSubmit } = useForm();
     const onSubmit = async (data) => {
         console.log(data)
     }

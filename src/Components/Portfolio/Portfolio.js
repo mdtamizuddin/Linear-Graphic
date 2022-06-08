@@ -5,7 +5,7 @@ import PortfolioCard from './PortfolioCard'
 
 const Portfolio = () => {
     const url = 'https://linear-graphic.herokuapp.com/portfolio'
-    const { isLoading, data, refetch } = useQuery(['Portfolio-all'], () =>
+    const { isLoading, data } = useQuery(['Portfolio-all'], () =>
         fetch(url,{
             method:'get',
             headers :{

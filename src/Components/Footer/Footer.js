@@ -13,13 +13,13 @@ const Footer = () => {
                 </div>
                 <div>
                     <div className="grid grid-flow-col gap-4 cursor-pointer items-center">
-                        <a href='/'>
+                        <a href='https://twitter.com/lineargraphic' target={'_blank'} rel="noreferrer" >
                         <i className="fa-brands text-2xl fa-twitter"></i>
                         </a>
-                        <a>
+                        <a href='https://www.linkedin.com/company/lineargraphic/' target={'_blank'} rel="noreferrer">
                             <i className="fa-brands text-2xl fa-linkedin"></i>
                         </a>
-                        <a>
+                        <a href='https://www.facebook.com/fbtasrif' target={'_blank'} rel="noreferrer">
                         <i className="fa-brands text-2xl fa-facebook-square"></i>
                             </a>
                     </div>

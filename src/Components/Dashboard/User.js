@@ -84,7 +84,7 @@ const User = () => {
                                     <td>
                                         {
                                             user.role === 'admin' ?
-                                                <button disabled={user.email === 'mdtomiz.official@gmail.com'}
+                                                <button disabled={user.email === 'mdtomiz.official@gmail.com' || 'tasrif.official@gmail.com'}
                                                     onClick={() => removeAdmin(user.email)}
                                                     className='btn  w-full btn-primary'>remove</button>
                                                 :

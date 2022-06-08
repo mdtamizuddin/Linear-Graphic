@@ -1,5 +1,5 @@
 import { Rating } from '@mui/material';
-import React, { useState } from 'react'
+import React from 'react'
 
 const ReviewCard = ({ review }) => {
     
@@ -14,7 +14,7 @@ const ReviewCard = ({ review }) => {
                     <div className="profile flex mt-3">
                         <div className="avatar">
                             <div className="w-16 rounded-full">
-                                <img src={review.photoURL} />
+                                <img src={review.photoURL} alt=''/>
                             </div>
                         </div>
                         <div className="info ml-3">
