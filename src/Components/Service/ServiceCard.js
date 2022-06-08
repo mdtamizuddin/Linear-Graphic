@@ -5,11 +5,11 @@ const ServiceCard = ({ service }) => {
     const { description, name, image } = service
     return (
         <div>
-            <div className="card card-service  overflow-visible  roudede-none   bg-base-100 shadow-md">
+            <div className="card card-service   overflow-visible  roudede-none   bg-base-100 shadow-md">
                 <figure><img className='w-44 h-44' src={image} alt="Shoes" /></figure>
                 <div className="card-body  roudede-none">
                     <h1 className='text-2xl text-secondary mb-3 text-center'>{name}</h1>
-                    <p className='text-center'>{description.slice(0, 90)}</p>
+                    <p className='text-center'>{description.length > 100 ? description.slice(0, 100)+ ' ....' : description}</p>
 
                     <div className='flex justify-center mt-5'>
                         <Link to='/' className="btn btn-secondary 

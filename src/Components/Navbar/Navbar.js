@@ -22,7 +22,7 @@ const Navbar = () => {
         return <Loading />
     }
     return (
-        <div className='shadow '>
+        <div>
             <div className="navbar container mx-auto bg-base-100">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -82,7 +82,7 @@ export default Navbar
 const Navigations = () => {
     return (
         <>
-            <li className='mx-2 '><NavLink to='/'>Home</NavLink></li>
+            <li className='mx-2 lg:ml-20'><NavLink to='/'>Home</NavLink></li>
             <li className='mx-2'><NavLink to='/service'>Service</NavLink></li>
             <li className='mx-2'><NavLink to='/portfolio'>Portfolio</NavLink></li>
             <li className='mx-2'><NavLink to='/pricing/monthly'>Pricing</NavLink></li>

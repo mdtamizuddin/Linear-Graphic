@@ -13,7 +13,7 @@ const Service = () => {
         return <h1>loading..</h1>
     }
     return (
-        <div className='container mx-auto mt-10 px'>
+        <div className='container mx-auto mt-10  service-section'>
             <h1 className="text-5xl text-center  mb-10">Services</h1>
             <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 lg:gap-10 gap-7 justify-items-center px-5 lg:px-0'>
                 {

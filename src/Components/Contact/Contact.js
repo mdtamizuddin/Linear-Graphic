@@ -1,5 +1,4 @@
 
-
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
@@ -33,7 +32,7 @@ const Contact = () => {
                                 headers: {
                                     'content-type': 'application/json'
                                 },
-                                body: JSON.stringify({ name: data.name, email: data.email, message: data.message, subject: data.subject })
+                                body: JSON.stringify({ image : url, name: data.name, email: data.email, message: data.message, subject: data.subject })
                             }).then(res => {
                                 if (res.status === 200) {
                                     fetch('https://linear-graphic.herokuapp.com/message', {
@@ -42,7 +41,7 @@ const Contact = () => {
                                             'content-type': 'application/json',
                                             auth: localStorage.getItem('Token')
                                         },
-                                        body: JSON.stringify({ name: data.name, email: data.email, message: data.message, subject: data.subject, date: dateNow() })
+                                        body: JSON.stringify({ image : url,name: data.name, email: data.email, message: data.message, subject: data.subject, date: dateNow() })
                                     })
                                     setLoading(false)
                                     toast.success('Your Message Send Success')

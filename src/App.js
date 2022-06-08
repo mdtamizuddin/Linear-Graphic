@@ -113,9 +113,9 @@ function App() {
               <Route path='add-review' element={<AddReview />} />
               <Route path='portfolios' element={<ManagePortfolio />} />
               <Route path='pricing' element={<PricingDash />} >
-              <Route path='monthly' element={<Monthly2 />} />
-              <Route path='yearly' element={<Yearly2 />} />
-              
+                <Route path='monthly' element={<Monthly2 />} />
+                <Route path='yearly' element={<Yearly2 />} />
+
               </Route>
             </Route>
             :

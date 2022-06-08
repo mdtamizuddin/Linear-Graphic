@@ -47,7 +47,7 @@ const ManagePortfolio = () => {
                                         <td>
                                             <div className="avatar">
                                                 <div className="w-24 rounded">
-                                                    <img src={port.images[0].image} alt='' />
+                                                    <img src={port.images[0]?.image} alt='' />
                                                 </div>
                                             </div>
 

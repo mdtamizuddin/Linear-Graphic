@@ -8,6 +8,7 @@ const AddPortfolio = () => {
     const [progress, setProgress] = useState(0)
     const [image, setImage] = useState([])
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
+    console.log(image)
     const onSubmit = async (data) => {
         const name = data.name
         const images = image
