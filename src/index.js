@@ -7,6 +7,7 @@ import 'animate.css';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 const queryClient = new QueryClient()
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

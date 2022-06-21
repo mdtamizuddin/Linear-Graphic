@@ -9,6 +9,15 @@
 
 .port-overlay {
     transition: 0.9s all ease-in-out;
+    height:  auto;
+    padding: 15px 0px;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
 }
 
 .port-card {
@@ -25,33 +34,45 @@
     height: 100vh;
     background-color: aliceblue;
 }
-.card-service {
-    height: 420px;
-}
 
+.container {
+    width: 85%;
+}
+.portfolio-image {
+    height: fit-content;
+}
 
 @media only screen and (max-width: 1900px) {
     .card-service {
         width: 100%;
     }
-    header{
+
+    header {
         padding: 0px 30px;
     }
+
+
+
 }
+
 @media only screen and (max-width: 1300px) {
     .card-service {
         width: 95%;
     }
-    .service-section{
+
+    .service-section {
         padding: 0px 25px;
     }
-    header{
+
+    header {
         padding: 0px 20px;
     }
-    .main-app{
-        padding: 0px 30px;
+
+    .logo {
+        width: 170px;
     }
 }
+
 @media only screen and (max-width: 1200px) {
     .card-service {
         width: 97%;
@@ -62,27 +83,33 @@
     .card-service {
         width: 97%;
     }
-    .heroImg{
+
+    .heroImg {
         width: auto;
     }
-    .main-app{
-        padding: 0px 0px;
-    }
+
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 650px) {
     .logo {
         width: 150px;
     }
-    .heroImg{
+
+    .heroImg {
         width: 100%;
         height: auto;
     }
+
     .card-service {
         width: 100%;
     }
+
     .card-service {
         height: auto;
+    }
+
+    .container {
+        width: 98%;
     }
 }
 
@@ -97,7 +124,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&family=Mulish:wght@900&display=swap');
 
-.heroImg{
+.heroImg {
     width: 650px;
     height: 550px;
 }

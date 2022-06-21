@@ -34,6 +34,7 @@ import NotFound from './Components/NotFound/NotFound';
 import Loading from './Components/Loading/Loading';
 import Headers from './Components/Dashboard/Headers';
 import Messages from './Components/Dashboard/Messages';
+import Booking from './Components/Booking/Booking';
 function App() {
   const [currentUser, setUser] = useState({ role: 'am-public' })
   const [user, loading] = useAuthState(auth);
@@ -89,6 +90,10 @@ function App() {
         <Route path='/contact' element={<>
           <Navbar />
           <Contact />
+        </>} />
+        <Route path='/bookCall' element={<>
+          <Navbar />
+          <Booking />
         </>} />
         <Route path='/pricing' element={<>
           <Navbar />

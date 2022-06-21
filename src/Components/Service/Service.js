@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQuery } from 'react-query'
 import ServiceCard from './ServiceCard'
-
+import Loading from '../Loading/Loading'
 const Service = () => {
     const url = 'https://linear-graphic.herokuapp.com/service'
     const { isLoading, data } = useQuery(['services'], () =>
@@ -10,7 +10,7 @@ const Service = () => {
             )
     )
     if (isLoading) {
-        return <h1>loading..</h1>
+        return <Loading />
     }
     return (
         <div className='container mx-auto mt-10  service-section'>

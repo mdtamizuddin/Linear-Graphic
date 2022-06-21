@@ -2,7 +2,7 @@ import React from 'react'
 import { useQuery } from 'react-query'
 import Loading from '../Loading/Loading'
 
-const Monthly = () => {
+const Yearly = () => {
     const url = `https://linear-graphic.herokuapp.com/pricingYearly/`
     const { isLoading, data } = useQuery(['pricing yearly'], () =>
         fetch(url)
@@ -25,8 +25,8 @@ const Monthly = () => {
                             <span className="text-lg ml-1 font-normal text-gray-500">/yearly</span>
                         </h1>
                         {
-                            data[0].services.map(service =>
-                                <p className="flex items-center text-gray-600 mb-6">
+                            data[0].services.map((service ,index) =>
+                                <p key={index} className="flex items-center text-gray-600 mb-6">
                                     <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-secondary text-white rounded-full flex-shrink-0">
                                         <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" className="w-3 h-3" viewBox="0 0 24 24">
                                             <path d="M20 6L9 17l-5-5" />
@@ -51,8 +51,8 @@ const Monthly = () => {
                             <span className="text-lg ml-1 font-normal text-gray-500">/yearly</span>
                         </h1>
                         {
-                            data[1].services.map(service =>
-                                <p className="flex items-center text-gray-600 mb-6">
+                            data[1].services.map((service , index) =>
+                                <p key={index} className="flex items-center text-gray-600 mb-6">
                                     <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-secondary text-white rounded-full flex-shrink-0">
                                         <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" className="w-3 h-3" viewBox="0 0 24 24">
                                             <path d="M20 6L9 17l-5-5" />
@@ -77,8 +77,8 @@ const Monthly = () => {
                             <span className="text-lg ml-1 font-normal text-gray-500">/yearly</span>
                         </h1>
                         {
-                            data[2].services.map(service =>
-                                <p className="flex items-center text-gray-600 mb-6">
+                            data[2].services.map((service , index) =>
+                                <p key={index} className="flex items-center text-gray-600 mb-6">
                                     <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-secondary text-white rounded-full flex-shrink-0">
                                         <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" className="w-3 h-3" viewBox="0 0 24 24">
                                             <path d="M20 6L9 17l-5-5" />
@@ -99,4 +99,4 @@ const Monthly = () => {
     )
 }
 
-export default Monthly
+export default Yearly

@@ -5,12 +5,12 @@ const Header = () => {
     return (
         <header>
             <div className="container mx-auto  bg-base-100 animate__animated animate__fadeInDown">
-                <div className="flex h-screen w-full flex-col lg:flex-row-reverse items-center lg:justify-between">
-                    <img  src={heroimg} alt='hero img' className=" " />
-                    <div className='mt-5 lg:mt-0'>
-                        <h1 className="text-5xl  leading-snug header-font">Get your everyday<br /> design done</h1>
-                        <p className="py-6">Scale up your creative content production <br /> with a reliable and hassle-free design service.</p>
-                        <Link to='/pricing' className="btn btn-primary">pick your plan</Link>
+                <div className="flex lg:h-screen w-full  lg:flex-row-reverse flex-col-reverse items-center lg:justify-between">
+                    <img  src={heroimg} alt='hero img ' className=" mt-10 lg:mt-0" />
+                    <div className='mt-10  lg:mt-0 flex-col flex items-center lg:items-start'>
+                        <h1 className="text-3xl md:text-5xl  lg:text-5xl text-center lg:text-left md:text-left  leading-snug header-font">Get your everyday<br /> design done</h1>
+                        <p className="py-6  text- ">Scale up your creative content production <br /> with a reliable and hassle-free design service.</p>
+                        <Link to='/pricing' className="btn btn-secondary ">pick your plan</Link>
                     </div>
                 </div>
             </div>

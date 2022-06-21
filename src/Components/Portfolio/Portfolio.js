@@ -21,7 +21,8 @@ const Portfolio = () => {
     }
     return (
         <div className='container mx-auto py-16 px-5 lg:px-0 md:px-0'>
-            <h1 className="text-center text-5xl mb-16 font-bold">Our Letest Works</h1>
+            <h1 className="text-center text-5xl  font-bold">Our Letest Works</h1>
+            <p className="text-center mb-16 mt-3 text-xl">Check out some of the latest creations we did for our customers</p>
             <div className='grid grid-cols-1 w-full lg:grid-cols-3 md:grid-cols-2 gap-7'>
             {
                 data.map(portfolio =>  <PortfolioCard key={portfolio._id} portfolio={portfolio}/>)

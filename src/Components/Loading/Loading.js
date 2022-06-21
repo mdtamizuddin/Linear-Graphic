@@ -1,9 +1,15 @@
 import React from 'react'
-import loading from './loading.gif'
+import {  Grid} from 'react-loader-spinner'
+
 const Loading = () => {
     return (
         <div className='flex justify-center items-center h-screen w-full'>
-            <img src={loading} alt="" />
+            <Grid
+                height="100"
+                width="100"
+                color='#660FE0'
+                ariaLabel='loading'
+            />
         </div>
     )
 }

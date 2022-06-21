@@ -15,13 +15,10 @@ const Signup = () => {
         setLoading(true)
         const formData = new FormData();
         formData.append('image', data.avater[0]);
-
-        const url = `https://api.imgbb.com/1/upload?key=1483e8863ef155b9c5094f8292f7500a`
         const displayName = data.name
         const email = data.email
         const password = data.password
-
-        fetch(url, {
+        fetch(`https://api.imgbb.com/1/upload?key=1483e8863ef155b9c5094f8292f7500a`, {
             method: "POST",
             body: formData
         })
