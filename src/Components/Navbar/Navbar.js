@@ -87,12 +87,12 @@ export default Navbar
 const Navigations = () => {
     return (
         <>
-            <li className='mx-2  lg:ml-20'><NavLink to='/'>Home</NavLink></li>
-            <li className='mx-2 '><NavLink to='/service'>Service</NavLink></li>
-            <li className='mx-2 '><NavLink to='/portfolio'>Portfolio</NavLink></li>
-            <li className='mx-2 '><NavLink to='/pricing/monthly'>Pricing</NavLink></li>
-            <li className='mx-2 '><NavLink to='/review'>Tastimonial</NavLink></li>
-            <li className='mx-2 '><NavLink to='/contact'>Contact</NavLink></li>
+            <li className='mx-0  lg:ml-0'><NavLink to='/'>Home</NavLink></li>
+            <li className='mx-0 '><NavLink to='/service'>Service</NavLink></li>
+            <li className='mx-0 '><NavLink to='/portfolio'>Portfolio</NavLink></li>
+            <li className='mx-0 '><NavLink to='/pricing'>Pricing</NavLink></li>
+            <li className='mx-0 '><NavLink to='/review'>Tastimonial</NavLink></li>
+            <li className='mx-0 '><NavLink to='/contact'>Contact</NavLink></li>
             <Link to='/bookCall' className="btn mt-4 btn-secondary btn-outline  mr-3 md:hidden flex ">Book A Call</Link>
         </>
     )

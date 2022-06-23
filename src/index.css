@@ -1,13 +1,8 @@
-.floating-action{
+.floating-action {
     position: fixed;
     bottom: 0;
-    margin-bottom: 50px; 
+    margin-bottom: 50px;
     margin-right: 20px;
     z-index: 50;
     right: 0;
-}
-
-.navigation-pricing .active{
-    background: rgb(40, 68, 226);
-    color: white;
 }

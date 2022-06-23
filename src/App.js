@@ -1,5 +1,5 @@
 
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
 import Login from './Components/User/Login';
@@ -35,6 +35,8 @@ import Loading from './Components/Loading/Loading';
 import Headers from './Components/Dashboard/Headers';
 import Messages from './Components/Dashboard/Messages';
 import Booking from './Components/Booking/Booking';
+import AddFAQ from './Components/Dashboard/Faq/AddFAQ';
+import ManageFaq from './Components/Dashboard/Faq/ManageFaq';
 function App() {
   const [currentUser, setUser] = useState({ role: 'am-public' })
   const [user, loading] = useAuthState(auth);
@@ -59,10 +61,10 @@ function App() {
           <Home />
           <Contact />
         </>} />
-        <Route path='*' element={<>
+        {/* <Route path='*' element={<>
           <Navbar />
           <NotFound />
-        </>} />
+        </>} /> */}
         <Route path='/service' element={<>
           <Navbar />
           <Service />
@@ -103,29 +105,26 @@ function App() {
           <Route path='monthly' element={<Monthly />} />
           <Route path='yearly' element={<Yearly />} />
         </Route>
-        {
-          currentUser.role === "admin" ?
+        <Route path='/dashboard' element={<RequireAuth>
+          <Dashboard />
+        </RequireAuth>}>
+          <Route index element={<User />} />
+          <Route path='messages' element={<Messages />} />
+          <Route path='users' element={<User />} />
+          <Route path='services' element={<ManageService />} />
+          <Route path='headers' element={<Headers />} />
+          <Route path='add-portfolio' element={<AddPortfolio />} />
+          <Route path='add-review' element={<AddReview />} />
+          <Route path='portfolios' element={<ManagePortfolio />} />
+          <Route path='add-faq' element={<AddFAQ />} />
+          <Route path='manage-faq' element={<ManageFaq />} />
 
-            <Route path='/dashboard' element={<RequireAuth>
-              <Dashboard />
-            </RequireAuth>}>
-              <Route index element={<User />} />
-              <Route path='messages' element={<Messages />} />
-              <Route path='users' element={<User />} />
-              <Route path='services' element={<ManageService />} />
-              <Route path='headers' element={<Headers />} />
-              <Route path='add-portfolio' element={<AddPortfolio />} />
-              <Route path='add-review' element={<AddReview />} />
-              <Route path='portfolios' element={<ManagePortfolio />} />
-              <Route path='pricing' element={<PricingDash />} >
-                <Route path='monthly' element={<Monthly2 />} />
-                <Route path='yearly' element={<Yearly2 />} />
+          <Route path='pricing' element={<PricingDash />} >
+            <Route path='monthly' element={<Monthly2 />} />
+            <Route path='yearly' element={<Yearly2 />} />
 
-              </Route>
-            </Route>
-            :
-            ''
-        }
+          </Route>
+        </Route>
       </Routes>
       <Footer />
       <ToastContainer />

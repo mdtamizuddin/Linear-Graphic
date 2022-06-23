@@ -45,9 +45,11 @@ const Navigations = () => {
     return (
         <>
             <li><Link to='users'>Users</Link></li>
-            <li><Link to='portfolios'>Manage Portfolio</Link></li>
             <li><Link to='add-portfolio'>Add a Portfolio</Link></li>
             <li><Link to='add-review'>Add a Review</Link></li>
+            <li><Link to='add-faq'>Add a FAQ</Link></li>
+            <li><Link to='portfolios'>Manage Portfolio</Link></li>
+            <li><Link to='manage-faq'>Manage FAQ</Link></li>
             <li><Link to='services'>Manage Services</Link></li>
             <li><Link to='messages'>Messages</Link></li>
             

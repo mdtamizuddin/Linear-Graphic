@@ -1,0 +1,35 @@
+.priceing-card {
+   height: auto;
+   padding-bottom: 20px;
+   width: 90%;
+}
+.priceing-card:hover{
+   border: 2px solid #E85D95;
+}
+.navigation-pricing a{
+   padding: 7px 20px;
+}
+.navigation-pricing .active {
+   background: #E85D95;
+   color: white;
+}
+
+@media only screen and (max-width: 1900px) {
+   .pricing-container {
+      width: 90%;
+   }
+}
+
+@media only screen and (max-width: 1600px) {
+   .pricing-container {
+      width: 100%;
+   }
+
+   .priceing-card {
+      width: 100%;
+   }
+
+   .pricing-container .grid-con {
+      column-gap: 27px;
+   }
+}

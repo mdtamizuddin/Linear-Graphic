@@ -26,7 +26,7 @@
 }
 
 .modal-full {
-    position: absolute;
+    position: fixed;
     top: 0;
     justify-content: center;
     align-items: center;
@@ -36,7 +36,7 @@
 }
 
 .container {
-    width: 85%;
+    width: 80%;
 }
 .portfolio-image {
     height: fit-content;
