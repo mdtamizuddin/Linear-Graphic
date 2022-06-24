@@ -1,5 +1,5 @@
 
-import { Navigate, Route, Routes } from 'react-router-dom';
+import {  Route, Routes } from 'react-router-dom';
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
 import Login from './Components/User/Login';
@@ -27,29 +27,12 @@ import Yearly2 from './Components/Dashboard/Pricing/Yearly';
 import User from './Components/Dashboard/User';
 import ManageService from './Components/Dashboard/ManageService';
 import RequireAuth from './Components/RequireAuth/RequireAuth';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import auth from './Components/firebase/firebase.init';
-import { useEffect, useState } from 'react';
-import NotFound from './Components/NotFound/NotFound';
-import Loading from './Components/Loading/Loading';
 import Headers from './Components/Dashboard/Headers';
 import Messages from './Components/Dashboard/Messages';
 import Booking from './Components/Booking/Booking';
 import AddFAQ from './Components/Dashboard/Faq/AddFAQ';
 import ManageFaq from './Components/Dashboard/Faq/ManageFaq';
 function App() {
-  const [currentUser, setUser] = useState({ role: 'am-public' })
-  const [user, loading] = useAuthState(auth);
-  useEffect(() => {
-    if (user) {
-      fetch(`https://linear-graphic.herokuapp.com/users/${user.email}`)
-        .then(res => res.json())
-        .then(json => setUser(json))
-    }
-  }, [user])
-  if (loading) {
-    return <Loading />
-  }
   return (
     <div className='main-app'>
       <ScrollToTop smooth component={<p style={{ color: "blue" }}>
