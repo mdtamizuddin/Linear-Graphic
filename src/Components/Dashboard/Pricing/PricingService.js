@@ -4,24 +4,24 @@ import { useQuery } from 'react-query'
 import Loading from '../../Loading/Loading'
 import { toast } from 'react-toastify'
 import Card from './Card'
-const Monthly = () => {
+const PricingService = () => {
     const [show, setShow] = useState(false)
     const [price, setPrice] = useState({})
-    const url = `https://linear-graphic.herokuapp.com/pricingMonthly`
-    const { isLoading, data, refetch } = useQuery(['pricing-yearly'], () =>
+    const url = `https://linear-graphic.herokuapp.com/pricingYearly/`
+    const { isLoading, data, refetch } = useQuery(['pricing yearly'], () =>
         fetch(url)
             .then(res => res.json()
             )
     )
-    console.log(data)
     if (isLoading) {
         return <Loading />
     }
     return (
-        <div className=''>
+        <div >
+            <h1 className='text-center py-14 text-5xl text-gray-900'>Lead Magnet / E-book / PDF</h1>
             <div className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3  gap-y-5'>
                 {
-                    data?.map((price, index) => <Card key={price._id} price={price} setShow={setShow} setPrice={setPrice} type={'/yearly'} />)
+                    data.map((price, index) => <Card key={price._id} price={price} setShow={setShow} setPrice={setPrice} type={'yearly'} />)
                 }
 
             </div>
@@ -30,7 +30,7 @@ const Monthly = () => {
     )
 }
 
-export default Monthly
+export default PricingService
 
 
 const ModalUpdate = ({ show, setShow, price, refetch, setPrice }) => {
@@ -38,7 +38,7 @@ const ModalUpdate = ({ show, setShow, price, refetch, setPrice }) => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = (data) => {
         setLoading(true)
-        const url = `https://linear-graphic.herokuapp.com/pricingMonthly/${price._id}`
+        const url = `https://linear-graphic.herokuapp.com/pricingYearly/${price._id}`
         fetch(url, {
             method: 'put',
             headers: {
@@ -64,7 +64,8 @@ const ModalUpdate = ({ show, setShow, price, refetch, setPrice }) => {
                 <button onClick={() => {
                     setPrice({})
                     setShow(false)
-                }} className='btn btn-error btn-sm absolute right-0 top-0'>close</button>
+                }
+                } className='btn btn-error btn-sm absolute right-0 top-0'>close</button>
                 <form onSubmit={handleSubmit(onSubmit)} className="card-body lg:w-96">
                     <div className="form-control">
                         <label className="label">

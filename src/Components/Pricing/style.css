@@ -2,9 +2,11 @@
    height: auto;
    padding-bottom: 20px;
    width: 90%;
+   background-color: rgb(242, 244, 246);
 }
 .priceing-card:hover{
    border: 2px solid #E85D95;
+   background-color: white;
 }
 .navigation-pricing a{
    padding: 7px 20px;

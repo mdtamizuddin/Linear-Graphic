@@ -26,7 +26,7 @@ const ManageService = () => {
     }
     return (
         <div className='pt-10'>
-            <h1 className='text-center text-4xl my-5'>All Portfolios</h1>
+            <h1 className='text-center text-4xl my-5'>All Services</h1>
             <div className="overflow-x-auto">
                 {
                     data.length > 0 ?

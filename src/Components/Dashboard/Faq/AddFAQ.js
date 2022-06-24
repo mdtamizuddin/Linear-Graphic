@@ -35,7 +35,7 @@ const AddFAQ = () => {
             <div className='flex h-screen justify-center items-center'>
                 <form onSubmit={addFaq} className='card py-14 px-5 w-96 max-w-lg shadow'>
                     <input name='title' type="text" placeholder="Title" className="input input-bordered w-full" required />
-                    <textarea name='desc' type="text" placeholder="Description" class="input input-bordered w-full h-64 mt-5 max-w-full" required />
+                    <textarea name='desc' type="text" placeholder="Description" className="input input-bordered w-full h-64 mt-5 max-w-full" required />
                     <button className='btn btn-secondary mt-5'>Add FAQ</button>
                 </form>
             </div>

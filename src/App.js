@@ -1,5 +1,5 @@
 
-import {  Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
 import Login from './Components/User/Login';
@@ -32,9 +32,26 @@ import Messages from './Components/Dashboard/Messages';
 import Booking from './Components/Booking/Booking';
 import AddFAQ from './Components/Dashboard/Faq/AddFAQ';
 import ManageFaq from './Components/Dashboard/Faq/ManageFaq';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from './Components/firebase/firebase.init';
+import { useState } from 'react';
+import Loading from './Components/Loading/Loading';
+import RequireAdmin from './Components/RequireAuth/RequireAdmin';
 function App() {
+
+  // const [user, loading] = useAuthState(auth)
+  // const [data, setData] = useState({ role: 'am-public' })
+  // if (user) {
+  //   const url = `https://linear-graphic.herokuapp.com/users/${user?.email}`
+  //   fetch(url)
+  //     .then(res => res.json())
+  //     .then(json => setData(json))
+  // }
+  // if (loading) {
+  //   return <Loading />
+  // }
   return (
-    <div className='main-app'>
+    <div className='main-app bg-white'>
       <ScrollToTop smooth component={<p style={{ color: "blue" }}>
         <i className="fa-solid  fa-arrow-up"></i>
       </p>} />
@@ -88,26 +105,30 @@ function App() {
           <Route path='monthly' element={<Monthly />} />
           <Route path='yearly' element={<Yearly />} />
         </Route>
-        <Route path='/dashboard' element={<RequireAuth>
-          <Dashboard />
-        </RequireAuth>}>
-          <Route index element={<User />} />
-          <Route path='messages' element={<Messages />} />
-          <Route path='users' element={<User />} />
-          <Route path='services' element={<ManageService />} />
-          <Route path='headers' element={<Headers />} />
-          <Route path='add-portfolio' element={<AddPortfolio />} />
-          <Route path='add-review' element={<AddReview />} />
-          <Route path='portfolios' element={<ManagePortfolio />} />
-          <Route path='add-faq' element={<AddFAQ />} />
-          <Route path='manage-faq' element={<ManageFaq />} />
+        {
+          <Route path='/dashboard' element={<RequireAuth>
+            <Dashboard />
+          </RequireAuth>}>
+            <Route index element={<RequireAdmin>
+              <User />
+            </RequireAdmin>} />
+            <Route path='messages' element={<RequireAdmin><Messages /></RequireAdmin>} />
+            <Route path='users' element={<RequireAdmin><User /></RequireAdmin>} />
+            <Route path='services' element={<RequireAdmin><ManageService /></RequireAdmin>} />
+            <Route path='headers' element={<RequireAdmin><Headers /></RequireAdmin>} />
+            <Route path='add-portfolio' element={<RequireAdmin><AddPortfolio /></RequireAdmin>} />
+            <Route path='add-review' element={<RequireAuth><AddReview /></RequireAuth>} />
+            <Route path='portfolios' element={<RequireAdmin><ManagePortfolio /></RequireAdmin>} />
+            <Route path='add-faq' element={<RequireAdmin><AddFAQ /></RequireAdmin>} />
+            <Route path='manage-faq' element={<RequireAdmin><ManageFaq /></RequireAdmin>} />
 
-          <Route path='pricing' element={<PricingDash />} >
-            <Route path='monthly' element={<Monthly2 />} />
-            <Route path='yearly' element={<Yearly2 />} />
+            <Route path='pricing' element={<RequireAdmin><PricingDash /></RequireAdmin>} >
+              <Route path='monthly' element={<Monthly2 />} />
+              <Route path='yearly' element={<Yearly2 />} />
 
+            </Route>
           </Route>
-        </Route>
+        }
       </Routes>
       <Footer />
       <ToastContainer />

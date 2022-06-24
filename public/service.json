@@ -3,35 +3,18 @@
         "type": "Pro",
         "price": 400,
         "button": "Choose Pro",
-        "services":[
-            "Unlimited Graphic design",
-            "Unlimited Logos & Branding",
-            "Unlimited Custom illustrations",
-            "Unlimited brands",
-            "Unlimited user",
-            "30-Day money back gurantee"
-        ]
+        "service": "Unlimited Graphic design && Unlimited Logos & Branding && Unlimited Custom illustrations && Unlimited brands && Unlimited user&&30-Day money back gurantee"
     },
     {
         "type": "Team",
         "price": 500,
         "button": "Choose Team ",
-        "services":[
-            "Unlimited Graphic design",
-            "Unlimited Custom illustrations",
-            "Unlimited presentations",
-            "Unlimited animated graphic",
-            "30-Day money back gurantee"
-        ]
+        "service": "Unlimited Graphic design && Unlimited Logos & Branding && Unlimited Custom illustrations && Unlimited brands && Unlimited user&&30-Day money back gurantee"
     },
     {
         "type": "Daytime",
         "price": 900,
         "button": "Choose Daytime",
-        "services":[
-            "Daytime Designer",
-            "Same-day turnaround",
-            "Dedicated art director"
-        ]
+        "service": "Unlimited Graphic design && Unlimited Logos & Branding && Unlimited Custom illustrations && Unlimited brands && Unlimited user&&30-Day money back gurantee"
     }
 ]

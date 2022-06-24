@@ -3,7 +3,7 @@ import { useQuery } from 'react-query'
 import Loading from '../Loading/Loading'
 const User = () => {
     const url = 'https://linear-graphic.herokuapp.com/users'
-    const { isLoading, data, refetch } = useQuery(['users'], () =>
+    const { isLoading, data, refetch } = useQuery(['users-all'], () =>
         fetch(url, {
             method: 'get',
             headers: {

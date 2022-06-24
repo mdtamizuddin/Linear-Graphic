@@ -9,7 +9,7 @@
 
 .port-overlay {
     transition: 0.9s all ease-in-out;
-    height:  auto;
+    height: auto;
     padding: 15px 0px;
     width: 100%;
     display: none;
@@ -28,6 +28,7 @@
 .modal-full {
     position: fixed;
     top: 0;
+    right: 0;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -38,6 +39,7 @@
 .container {
     width: 80%;
 }
+
 .portfolio-image {
     height: fit-content;
 }

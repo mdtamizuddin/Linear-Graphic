@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import auth from '../firebase/firebase.init'
@@ -7,23 +7,12 @@ import { signOut } from 'firebase/auth'
 import Loading from '../Loading/Loading'
 const Navbar = () => {
     const [user, loading] = useAuthState(auth)
-    const [currentUser, setUser] = useState({ role: 'am-public' })
-    useEffect(() => {
-        if (user) {
-            fetch(`https://linear-graphic.herokuapp.com/users/${user.email}`)
-                .then(res => res.json())
-                .then(json => setUser(json))
-        }
-    }, [user])
-    if (loading) {
-        return <Loading />
-    }
     if (loading) {
         return <Loading />
     }
     return (
         <div>
-            <div className="navbar container mx-auto bg-base-100">
+            <div className="navbar container mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -43,12 +32,13 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
+
                     {
                         !user ?
                             <>
                                 <Link to='/login' className="btn btn-outline ">Sign in</Link>
 
-                                <Link to='/bookCall' className="btn btn-md btn-secondary  ml-3 md:flex hidden ">Book A Call</Link>
+
 
                             </>
                             :
@@ -60,13 +50,14 @@ const Navbar = () => {
                                 </label>
                                 <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                                     {
-                                        currentUser?.role === "admin" &&
+                                        user &&
                                         <li>
                                             <Link to={'/dashboard'} className="justify-between">
                                                 Dashboard
                                                 <span className="badge">New</span>
                                             </Link>
-                                        </li>}
+                                        </li>
+                                    }
                                     <li><Link to='/'>Settings</Link></li>
                                     <li><button onClick={() => {
                                         signOut(auth)
@@ -74,7 +65,7 @@ const Navbar = () => {
                                 </ul>
                             </div>
                     }
-
+                    <Link to='/bookCall' className="btn btn-md btn-secondary  ml-3 md:flex hidden ">Book A Call</Link>
                 </div>
             </div>
 

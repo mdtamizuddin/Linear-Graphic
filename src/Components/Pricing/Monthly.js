@@ -19,7 +19,7 @@ const Monthly = () => {
             <div className="grid grid-con grid-cols-1 lg:grid-cols-3 md:grid-cols-2 w-full  gap-y-10 ">
 
                 {
-                    data.map(price => <PricingCard price={price} type={'monthly'} />)
+                    data.map(price => <PricingCard key={price._id} price={price} type={'/monthly'} />)
                 }
             </div>
         </div>

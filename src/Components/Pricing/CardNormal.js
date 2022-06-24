@@ -1,12 +1,11 @@
 import React from 'react'
 
-import imageSvg from '../Pricing/most-popular.svg'
-const PricingCard = ({ price, type }) => {
+const CardNormal = ({ price, type }) => {
     const services = price?.service?.split('&&')
     return (
-        <div className='priceing-card relative  py-5 px-8 flex flex-col items-center rounded  '>
+        <div style={{ backgroundColor: "rgb(242, 244, 246)" }} className='priceing-card relative  py-5 px-8 flex flex-col items-center rounded  '>
             <div className='rounded  flex flex-col justify-left w-full'>
-                <h1 className='text-xl text-neutral text-left font-bold flex'>{price.type} <img  className={`${price.popular ?  "block" : "hidden"}`} src={imageSvg} alt="" /></h1>
+                <h1 className='text-xl text-neutral text-left font-bold flex'>{price.type}</h1>
                 <h1 className='text-4xl font-black text-neutral  text-left mt-2'>${price.price}<span className='text-xl font-normal'>{type}</span></h1>
             </div>
             {/* heading End Here  */}
@@ -31,4 +30,4 @@ const PricingCard = ({ price, type }) => {
     )
 }
 
-export default PricingCard
+export default CardNormal

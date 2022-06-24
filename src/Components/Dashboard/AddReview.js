@@ -38,8 +38,8 @@ const AddReview = () => {
         <div className='flex h-screen justify-center items-center'>
             <form onSubmit={addReview} className='card py-14 px-5 w-96 max-w-lg shadow'>
                 <div className="profile flex my-3 items-center">
-                    <div class="avatar">
-                        <div class="w-16 rounded-full">
+                    <div className="avatar">
+                        <div className="w-16 rounded-full">
                             <img src={user.photoURL} alt=''/>
                         </div>
                     </div>
@@ -56,7 +56,7 @@ const AddReview = () => {
                         setValue(newValue);
                     }}
                 />
-                <textarea name='description' type="text" placeholder="Type here" class="input input-bordered w-full h-64 mt-5 max-w-full" />
+                <textarea name='description' type="text" placeholder="Type here" className="input input-bordered w-full h-64 mt-5 max-w-full" />
                 <button className='btn btn-secondary mt-5'>Submit Review</button>
             </form>
         </div>
