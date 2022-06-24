@@ -11,7 +11,7 @@ import PortfolioCard from '../Portfolio/PortfolioCard'
 import { Link } from 'react-router-dom'
 import Loading from '../Loading/Loading'
 const Home = () => {
-    const url = 'http://localhost:5000/review'
+    const url = 'https://linear-graphic.herokuapp.com/review'
     const { isLoading, data } = useQuery(['reviews'], () =>
         fetch(url, {
             method: 'get',
@@ -22,7 +22,7 @@ const Home = () => {
             .then(res => res.json()
             )
     )
-    const urlPort = 'http://localhost:5000/portfolio'
+    const urlPort = 'https://linear-graphic.herokuapp.com/portfolio'
     const { isLoading : portLoading, data : portfolio } = useQuery(['Portfolio'], () =>
         fetch(urlPort,{
             method:'get',

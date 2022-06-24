@@ -16,7 +16,7 @@ const Login = () => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                fetch(`http://localhost:5000/users/${user.email}`, {
+                fetch(`https://linear-graphic.herokuapp.com/users/${user.email}`, {
                     method: "put",
                     headers: {
                         'content-type': 'application/json'

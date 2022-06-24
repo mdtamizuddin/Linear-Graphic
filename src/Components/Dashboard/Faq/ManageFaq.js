@@ -8,7 +8,7 @@ const ManageFaq = () => {
     const [upShow, setUpShow] = useState(false)
     const [show, setShow] = useState(false)
     const [faq, setFaq] = useState({})
-    const url = `http://localhost:5000/faq`
+    const url = `https://linear-graphic.herokuapp.com/faq`
     const { isLoading, data, refetch } = useQuery(['FAQ'], () =>
         fetch(url, {
             method: 'get',
@@ -73,7 +73,7 @@ const ModalUpdate = ({ upShow, setUpShow, faq, refetch }) => {
     const onSubmit = (data) => {
         setLoading(true)
 
-        fetch(`http://localhost:5000/faq/${faq._id}`, {
+        fetch(`https://linear-graphic.herokuapp.com/faq/${faq._id}`, {
             method: 'put',
             headers: {
                 'content-type': 'application/json',
@@ -123,7 +123,7 @@ const DeleteModal = ({ show, setShow, faq, refetch }) => {
 
     const detetPort = () => {
         const id = faq._id
-        fetch(`http://localhost:5000/faq/${id}`, {
+        fetch(`https://linear-graphic.herokuapp.com/faq/${id}`, {
             method: "delete",
             headers: {
                 auth: localStorage.getItem('Token')

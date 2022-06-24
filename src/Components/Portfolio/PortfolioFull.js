@@ -5,7 +5,7 @@ import Loading from '../Loading/Loading';
 
 const PortfolioFull = () => {
     const {id} = useParams()
-    const url = `http://localhost:5000/portfolio/${id}`
+    const url = `https://linear-graphic.herokuapp.com/portfolio/${id}`
     const { isLoading, data } = useQuery(['portpolio Single one'], () =>
         fetch(url)
             .then(res => res.json()

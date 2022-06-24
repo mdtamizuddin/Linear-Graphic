@@ -5,7 +5,7 @@ import Loading from '../Loading/Loading'
 import CardFaq from './CardFaq'
 
 const Faq = () => {
-    const url = `http://localhost:5000/faq`
+    const url = `https://linear-graphic.herokuapp.com/faq`
     const { isLoading, data } = useQuery(['FAQ'], () =>
         fetch(url, {
             method: 'get',

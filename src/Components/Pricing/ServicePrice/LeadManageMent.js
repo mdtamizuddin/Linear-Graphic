@@ -4,7 +4,7 @@ import Loading from '../../Loading/Loading'
 import CardNormal from '../CardNormal'
 
 const LeadManagement = () => {
-    const url = `http://localhost:5000/leadmanagement/`
+    const url = `https://linear-graphic.herokuapp.com/leadmanagement/`
     const { isLoading, data } = useQuery(['pricing-leadmanagement'], () =>
         fetch(url)
             .then(res => res.json()

@@ -5,7 +5,7 @@ import Loading from '../Loading/Loading'
 import ReviewCard from './ReviewCard'
 
 const Review = () => {
-    const url = 'http://localhost:5000/review'
+    const url = 'https://linear-graphic.herokuapp.com/review'
     const { isLoading, data } = useQuery(['reviews-all'], () =>
         fetch(url, {
             method: 'get',

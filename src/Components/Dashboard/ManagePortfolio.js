@@ -8,7 +8,7 @@ const ManagePortfolio = () => {
     const [show, setShow] = useState(false)
     const [upShow, setUpShow] = useState(false)
     const [portfolio, setPortfolio] = useState({})
-    const url = 'http://localhost:5000/portfolio'
+    const url = 'https://linear-graphic.herokuapp.com/portfolio'
     const { isLoading, data, refetch } = useQuery(['portfolios'], () =>
         fetch(url, {
             method: 'get',
@@ -83,7 +83,7 @@ const Modal = ({ show, setShow, portfolio, refetch }) => {
 
     const detetPort = () => {
         const id = portfolio._id
-        fetch(`http://localhost:5000/portfolio/${id}`, {
+        fetch(`https://linear-graphic.herokuapp.com/portfolio/${id}`, {
             method: "delete",
             headers: {
                 auth: localStorage.getItem('Token')
@@ -126,7 +126,7 @@ const ModalUpdate = ({ upShow, setUpShow, portfolio, refetch }) => {
     const onSubmit = (data) => {
         setLoading(true)
 
-        fetch(`http://localhost:5000/portfolio/${portfolio._id}`, {
+        fetch(`https://linear-graphic.herokuapp.com/portfolio/${portfolio._id}`, {
             method: 'put',
             headers: {
                 'content-type': 'application/json',

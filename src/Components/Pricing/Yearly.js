@@ -4,7 +4,7 @@ import Loading from '../Loading/Loading'
 import PricingCard from './PricingCard'
 
 const Yearly = () => {
-    const url = `http://localhost:5000/pricingYearly/`
+    const url = `https://linear-graphic.herokuapp.com/pricingYearly/`
     const { isLoading, data } = useQuery(['pricing yearly'], () =>
         fetch(url)
             .then(res => res.json()

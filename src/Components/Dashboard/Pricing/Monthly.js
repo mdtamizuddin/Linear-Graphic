@@ -7,7 +7,7 @@ import Card from './Card'
 const Monthly = () => {
     const [show, setShow] = useState(false)
     const [price, setPrice] = useState({})
-    const url = `http://localhost:5000/pricingMonthly`
+    const url = `https://linear-graphic.herokuapp.com/pricingMonthly`
     const { isLoading, data, refetch } = useQuery(['pricing-yearly'], () =>
         fetch(url)
             .then(res => res.json()
@@ -37,7 +37,7 @@ const ModalUpdate = ({ show, setShow, price, refetch, setPrice }) => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = (data) => {
         setLoading(true)
-        const url = `http://localhost:5000/pricingMonthly/${price._id}`
+        const url = `https://linear-graphic.herokuapp.com/pricingMonthly/${price._id}`
         fetch(url, {
             method: 'put',
             headers: {

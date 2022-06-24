@@ -15,7 +15,7 @@ const AddReview = () => {
         const photoURL = user.photoURL
 
         const description = e.target.description.value
-        fetch('http://localhost:5000/review', {
+        fetch('https://linear-graphic.herokuapp.com/review', {
             method: 'Post',
             headers: {
                 'content-type': 'application/json',

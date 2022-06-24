@@ -38,7 +38,7 @@ function App() {
   // const [user, loading] = useAuthState(auth)
   // const [data, setData] = useState({ role: 'am-public' })
   // if (user) {
-  //   const url = `http://localhost:5000/users/${user?.email}`
+  //   const url = `https://linear-graphic.herokuapp.com/users/${user?.email}`
   //   fetch(url)
   //     .then(res => res.json())
   //     .then(json => setData(json))

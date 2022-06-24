@@ -10,7 +10,7 @@ const ManageService = () => {
     const [show, setShow] = useState(false)
     const [upShow, setUpShow] = useState(false)
     const [service, setPortfolio] = useState({})
-    const url = 'http://localhost:5000/service'
+    const url = 'https://linear-graphic.herokuapp.com/service'
     const { isLoading, data, refetch } = useQuery(['services-manage'], () =>
         fetch(url, {
             method: 'get',
@@ -88,7 +88,7 @@ const ModalDelete = ({ show, setShow, portfolio, refetch }) => {
 
     const detetPort = () => {
         const id = portfolio._id
-        fetch(`http://localhost:5000/service/${id}`, {
+        fetch(`https://linear-graphic.herokuapp.com/service/${id}`, {
             method: "delete",
             headers: {
                 auth: localStorage.getItem('Token')
@@ -143,7 +143,7 @@ const ModalUpdate = ({ upShow, setUpShow, service, refetch , setService}) => {
                 () => {
                     getDownloadURL(uploadTask.snapshot.ref)
                         .then(url => {
-                            fetch(`http://localhost:5000/service/${service._id}`, {
+                            fetch(`https://linear-graphic.herokuapp.com/service/${service._id}`, {
                                 method: 'put',
                                 headers: {
                                     'content-type': 'application/json',
@@ -165,7 +165,7 @@ const ModalUpdate = ({ upShow, setUpShow, service, refetch , setService}) => {
             )
         }
         else {
-            fetch(`http://localhost:5000/service/${service._id}`, {
+            fetch(`https://linear-graphic.herokuapp.com/service/${service._id}`, {
                 method: 'put',
                 headers: {
                     'content-type': 'application/json',

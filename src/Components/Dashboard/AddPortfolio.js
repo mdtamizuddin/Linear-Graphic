@@ -14,7 +14,7 @@ const AddPortfolio = () => {
         const name = data.name
         const images = image
         if (image.length > 0) {
-            fetch('http://localhost:5000/portfolio', {
+            fetch('https://linear-graphic.herokuapp.com/portfolio', {
                 method: 'Post',
                 headers: {
                     'content-type': 'application/json',
