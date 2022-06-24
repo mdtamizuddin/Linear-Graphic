@@ -10,7 +10,7 @@ const CardFaq = ({ faq }) => {
                 </div>
                 <div className="collapse-content relative">
                     {
-                        description.map(text => <p className='mt-3'>{text}</p>)
+                        description.map((text , index)=> <p key={index} className='mt-3'>{text}</p>)
                     }
                 </div>
             </div>

@@ -3,11 +3,12 @@ import React from 'react'
 import imageSvg from '../Pricing/most-popular.svg'
 const PricingCard = ({ price, type }) => {
     const services = price?.service?.split('&&')
+
     return (
-        <div className='priceing-card relative  py-5 px-8 flex flex-col items-center rounded  '>
+        <div className='priceing-card relative  py-5 px-8 flex flex-col items-center rounded  border-2 hover:border-secondary ease-in duration-300'>
             <div className='rounded  flex flex-col justify-left w-full'>
-                <h1 className='text-xl text-neutral text-left font-bold flex'>{price.type} <img  className={`${price.popular ?  "block" : "hidden"}`} src={imageSvg} alt="" /></h1>
-                <h1 className='text-4xl font-black text-neutral  text-left mt-2'>${price.price}<span className='text-xl font-normal'>{type}</span></h1>
+                <h1 className='text-xl text-neutral text-left font-bold flex'>{price.type} <img  className={`${price.popular === "true" ?  "block" : "hidden"}`} src={imageSvg} alt="" /></h1>
+                <h1  className='text-3xl font-black text-[#373738]  text-left mt-2'>${price.price}<span className='text-xl font-normal'>{type}</span></h1>
             </div>
             {/* heading End Here  */}
             <button className='btn  bottom-5 w-full btn-secondary btn-md rounded mt-8'>Order Now</button>

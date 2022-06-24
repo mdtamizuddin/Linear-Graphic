@@ -11,7 +11,7 @@ const Booking = () => {
                 primaryColor: '00a2ff',
                 textColor: '4d5055'
               }}
-              url="https://calendly.com/mdtomiz/linear-graphic" />
+              url="https://calendly.com/tasrif/book-a-schedule-call" />
         </div>
     )
 }

@@ -4,7 +4,7 @@ import heroimg from './Hero.png'
 const Header = () => {
     return (
         <header>
-            <div className="container mx-auto  bg-base-100 animate__animated animate__fadeInDown">
+            <div className="container mx-auto   animate__animated animate__fadeInDown">
                 <div className="flex lg:h-screen w-full  lg:flex-row-reverse flex-col-reverse items-center lg:justify-between">
                     <img  src={heroimg} alt='hero img ' className=" mt-10 lg:mt-0" />
                     <div className='mt-10  lg:mt-0 flex-col flex items-center lg:items-start'>

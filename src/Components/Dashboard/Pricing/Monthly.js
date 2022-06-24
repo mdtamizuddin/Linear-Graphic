@@ -13,7 +13,6 @@ const Monthly = () => {
             .then(res => res.json()
             )
     )
-    console.log(data)
     if (isLoading) {
         return <Loading />
     }

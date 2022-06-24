@@ -16,7 +16,7 @@ const Yearly = () => {
 
     return (
         <div className='pricing-container '>
-            <div className="grid grid-con grid-cols-1 lg:grid-cols-3 md:grid-cols-2 w-full  gap-y-10 ">
+            <div className="grid grid-con grid-cols-1 lg:grid-cols-3 md:grid-cols-2 w-full  gap-y-10  justify-items-center">
                 {
                     data.map(price => <PricingCard key={price._id} price={price} type={'yearly'} />)
                 }

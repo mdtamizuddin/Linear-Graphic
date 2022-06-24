@@ -32,10 +32,6 @@ import Messages from './Components/Dashboard/Messages';
 import Booking from './Components/Booking/Booking';
 import AddFAQ from './Components/Dashboard/Faq/AddFAQ';
 import ManageFaq from './Components/Dashboard/Faq/ManageFaq';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import auth from './Components/firebase/firebase.init';
-import { useState } from 'react';
-import Loading from './Components/Loading/Loading';
 import RequireAdmin from './Components/RequireAuth/RequireAdmin';
 function App() {
 

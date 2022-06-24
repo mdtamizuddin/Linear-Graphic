@@ -3,7 +3,6 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import auth from '../firebase/firebase.init'
-import NotFound from '../NotFound/NotFound'
 import Loading from '../Loading/Loading'
 
 const RequireAdmin = ({ children }) => {
