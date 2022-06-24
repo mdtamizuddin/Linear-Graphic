@@ -9,7 +9,7 @@ const CardNormal = ({ price, type }) => {
                 <h1 className='text-3xl font-black text-[#373738]  text-left mt-2'>${price.price}<span className='text-xl font-normal'>{type}</span></h1>
             </div>
             {/* heading End Here  */}
-            <button className='btn  bottom-5 w-full btn-secondary btn-md rounded mt-8'>Order Now</button>
+            <button className='btn  bottom-5 w-full btn-secondary btn-md rounded mt-8'>{price.button}</button>
             <span className='divider'></span>
             <div className='w-full'>
                 {
@@ -19,10 +19,10 @@ const CardNormal = ({ price, type }) => {
                     </h3>)
                 }
             </div>
-            <div className='h-10 flex items-end'>
-                <p className='text-xs'>All price in USD</p>
+            <div className='h-10 flex items-end relative w-full'>
+               
             </div>
-
+            <p className='text-xs absolute bottom-5 w-full text-center'>All price in USD</p>
 
 
 

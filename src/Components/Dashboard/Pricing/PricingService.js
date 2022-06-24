@@ -7,8 +7,8 @@ import Card from './Card'
 const PricingService = () => {
     const [show, setShow] = useState(false)
     const [price, setPrice] = useState({})
-    const url = `https://linear-graphic.herokuapp.com/leadmanagement/`
-    const { isLoading, data, refetch } = useQuery(['pricing yearly'], () =>
+    const url = `http://localhost:5000/leadmanagement/`
+    const { isLoading, data, refetch } = useQuery(['pricing-leadmanagement'], () =>
         fetch(url)
             .then(res => res.json()
             )
@@ -38,7 +38,7 @@ const ModalUpdate = ({ show, setShow, price, refetch, setPrice }) => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = (data) => {
         setLoading(true)
-        const url = `https://linear-graphic.herokuapp.com/leadmanagement/${price._id}`
+        const url = `http://localhost:5000/leadmanagement/${price._id}`
         fetch(url, {
             method: 'put',
             headers: {

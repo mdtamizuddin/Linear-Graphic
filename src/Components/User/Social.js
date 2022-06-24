@@ -16,7 +16,7 @@ const Social = () => {
             .then((result) => {
                 const user = result.user
                 navigate('/')
-                fetch(`https://linear-graphic.herokuapp.com/users/${user.email}`, {
+                fetch(`http://localhost:5000/users/${user.email}`, {
                     method: "put",
                     headers: {
                         'content-type': 'application/json'

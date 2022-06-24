@@ -3,7 +3,7 @@ import { useQuery } from 'react-query'
 import ServiceCard from './ServiceCard'
 import Loading from '../Loading/Loading'
 const Service = () => {
-    const url = 'https://linear-graphic.herokuapp.com/service'
+    const url = 'http://localhost:5000/service'
     const { isLoading, data } = useQuery(['services'], () =>
         fetch(url)
             .then(res => res.json()

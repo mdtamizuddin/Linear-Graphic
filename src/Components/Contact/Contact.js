@@ -27,7 +27,7 @@ const Contact = () => {
                     getDownloadURL(uploadTask.snapshot.ref)
                         .then(url => {
 
-                            fetch('https://linear-graphic.herokuapp.com/sendMail/contact', {
+                            fetch('http://localhost:5000/sendMail/contact', {
                                 method: "post",
                                 headers: {
                                     'content-type': 'application/json'
@@ -35,7 +35,7 @@ const Contact = () => {
                                 body: JSON.stringify({ image : url, name: data.name, email: data.email, message: data.message, subject: data.subject })
                             }).then(res => {
                                 if (res.status === 200) {
-                                    fetch('https://linear-graphic.herokuapp.com/message', {
+                                    fetch('http://localhost:5000/message', {
                                         method: 'post',
                                         headers: {
                                             'content-type': 'application/json',
@@ -59,7 +59,7 @@ const Contact = () => {
             )
         }
         else {
-            fetch('https://linear-graphic.herokuapp.com/sendMail/contact', {
+            fetch('http://localhost:5000/sendMail/contact', {
                 method: "post",
                 headers: {
                     'content-type': 'application/json'
@@ -67,7 +67,7 @@ const Contact = () => {
                 body: JSON.stringify({ name: data.name, email: data.email, message: data.message, subject: data.subject })
             }).then(res => {
                 if (res.status === 200) {
-                    fetch('https://linear-graphic.herokuapp.com/message', {
+                    fetch('http://localhost:5000/message', {
                         method: 'post',
                         headers: {
                             'content-type': 'application/json',

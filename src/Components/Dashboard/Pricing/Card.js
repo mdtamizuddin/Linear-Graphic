@@ -5,7 +5,7 @@ const Card = ({ price, type, setPrice, setShow }) => {
     return (
         <div className='priceing-card relative border-2 shadow-md py-5 px-8 flex flex-col items-center rounded '>
             <div className='rounded  flex flex-col justify-left w-full'>
-                <h1 className='text-xl text-neutral text-left font-bold flex'>{price.type} <img className={`${price.popular ? "block" : "hidden"}`} src={imageSvg} alt="" /></h1>
+                <h1 className='text-xl text-neutral text-left font-bold flex'>{price.type} <img className={`${price.popular === 'true'? "block" : "hidden"}`} src={imageSvg} alt="" /></h1>
                 <h1 className='text-4xl font-black text-neutral text-left mt-2'>$ {price.price}/<span className='text-xl'>{type}</span></h1>
             </div>
             {/* heading End Here  */}

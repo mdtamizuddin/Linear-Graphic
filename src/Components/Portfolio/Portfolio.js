@@ -4,7 +4,7 @@ import Loading from '../Loading/Loading'
 import PortfolioCard from './PortfolioCard'
 
 const Portfolio = () => {
-    const url = 'https://linear-graphic.herokuapp.com/portfolio'
+    const url = 'http://localhost:5000/portfolio'
     const { isLoading, data } = useQuery(['Portfolio-all'], () =>
         fetch(url,{
             method:'get',

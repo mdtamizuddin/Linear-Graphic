@@ -13,7 +13,7 @@ const Dashboard = () => {
     useEffect(() => {
         if (user) {
             setLoading(true)
-            const url = `https://linear-graphic.herokuapp.com/users/${user?.email}`
+            const url = `http://localhost:5000/users/${user?.email}`
             fetch(url)
                 .then(res => res.json())
                 .then(json => {

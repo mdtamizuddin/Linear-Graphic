@@ -29,7 +29,7 @@ const Signup = () => {
                     .then((userCredential) => {
                         // Signed in 
                         const user = userCredential.user;
-                        fetch(`https://linear-graphic.herokuapp.com/users/${user.email}`, {
+                        fetch(`http://localhost:5000/users/${user.email}`, {
                             method: "put",
                             headers: {
                                 'content-type': 'application/json'

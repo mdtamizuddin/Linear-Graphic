@@ -13,7 +13,7 @@ const AddFAQ = () => {
             title: e.target.title.value,
             desc: e.target.desc.value
         }
-        fetch('https://linear-graphic.herokuapp.com/faq', {
+        fetch('http://localhost:5000/faq', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

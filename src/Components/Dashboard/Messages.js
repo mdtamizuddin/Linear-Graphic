@@ -4,7 +4,7 @@ import { toast } from 'react-toastify'
 import Loading from '../Loading/Loading'
 
 const Messages = () => {
-    const url = 'https://linear-graphic.herokuapp.com/message'
+    const url = 'http://localhost:5000/message'
     const { isLoading, data , refetch } = useQuery(['messages'], () =>
         fetch(url, {
             method: 'get',
@@ -16,7 +16,7 @@ const Messages = () => {
             )
     )
     const deleteMessage = (id) => {
-        fetch(`https://linear-graphic.herokuapp.com/message/${id}`,{
+        fetch(`http://localhost:5000/message/${id}`,{
             method: 'delete',
             headers: {
                 auth : localStorage.getItem('Token')

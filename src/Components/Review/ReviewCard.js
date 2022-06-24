@@ -5,7 +5,7 @@ const ReviewCard = ({ review }) => {
     
     return (
         <div>
-            <div className="card w-full bg-base-100 shadow-2xl">
+            <div className="card w-full bg-base-100 shadow-xl">
                 <div className="card-body">
                     <Rating
                         name="simple-controlled"
