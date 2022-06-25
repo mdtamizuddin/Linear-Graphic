@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import Faq from '../FAQ/Faq'
+import RegularPricing from './RegularPricing'
 import LeadManageMent from './ServicePrice/LeadManageMent'
 
 const Pricing = () => {
@@ -20,6 +21,8 @@ const Pricing = () => {
                             <Outlet />
 
                             <LeadManageMent />
+
+                            <RegularPricing />
                         </div>
                     </div>
                 </div>
