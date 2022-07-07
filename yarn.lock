@@ -1207,9 +1207,9 @@
   resolved "https://registry.npmjs.org/@emotion/memoize/-/memoize-0.7.5.tgz"
   integrity sha512-igX9a37DR2ZPGYtV6suZ6whr8pTFtyHL3K/oLUotxpSVO2ASaprmAe2Dkq7tBo7CRY7MMDrAa9nuQP9/YG8FxQ==
 
-"@emotion/react@^11.9.0":
+"@emotion/react@^11.4.1", "@emotion/react@^11.9.0":
   version "11.9.0"
-  resolved "https://registry.yarnpkg.com/@emotion/react/-/react-11.9.0.tgz#b6d42b1db3bd7511e7a7c4151dc8bc82e14593b8"
+  resolved "https://registry.npmjs.org/@emotion/react/-/react-11.9.0.tgz"
   integrity sha512-lBVSF5d0ceKtfKCDQJveNAtkC7ayxpVlgOohLgXqRwqWr9bOf4TZAFFyIcNngnV6xK6X4x2ZeXq7vliHkoVkxQ==
   dependencies:
     "@babel/runtime" "^7.13.10"
@@ -1238,7 +1238,7 @@
 
 "@emotion/styled@^11.8.1":
   version "11.8.1"
-  resolved "https://registry.yarnpkg.com/@emotion/styled/-/styled-11.8.1.tgz#856f6f63aceef0eb783985fa2322e2bf66d04e17"
+  resolved "https://registry.npmjs.org/@emotion/styled/-/styled-11.8.1.tgz"
   integrity sha512-OghEVAYBZMpEquHZwuelXcRjRJQOVayvbmNR0zr174NHdmMgrNkLC6TljKC5h9lZLkN5WGrdUcrKlOJ4phhoTQ==
   dependencies:
     "@babel/runtime" "^7.13.10"
@@ -1964,7 +1964,7 @@
 
 "@mui/material@^5.8.1":
   version "5.8.1"
-  resolved "https://registry.yarnpkg.com/@mui/material/-/material-5.8.1.tgz#ff3c0dc65cf975362f8b141d4713a6d88b9f08e9"
+  resolved "https://registry.npmjs.org/@mui/material/-/material-5.8.1.tgz"
   integrity sha512-Vl3BHFzOcAT5TJfvzoQUyuo/Xckn+/NSRyJ8upM4Hbz6Y1egW6P8f1RCa4FdkEfPSd5wSSYdmPfAiEh8eI4rPg==
   dependencies:
     "@babel/runtime" "^7.17.2"
@@ -3019,7 +3019,7 @@ ajv@^8.0.0, ajv@^8.6.0, ajv@^8.8.0:
 
 animate.css@^4.1.1:
   version "4.1.1"
-  resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-4.1.1.tgz#614ec5a81131d7e4dc362a58143f7406abd68075"
+  resolved "https://registry.npmjs.org/animate.css/-/animate.css-4.1.1.tgz"
   integrity sha512-+mRmCTv6SbCmtYJCN4faJMNFVNN5EuCTTprDTAo7YzIGji2KADmakjVA3+8mVDkZ2Bf09vayB35lSQIex2+QaQ==
 
 ansi-escapes@^4.2.1, ansi-escapes@^4.3.1:
@@ -8018,7 +8018,7 @@ react-app-polyfill@^3.0.0:
 
 react-calendly@^4.0.1:
   version "4.0.1"
-  resolved "https://registry.yarnpkg.com/react-calendly/-/react-calendly-4.0.1.tgz#2cdbc0a997d7f066c60c23e4d90c1c9a237b1ec4"
+  resolved "https://registry.npmjs.org/react-calendly/-/react-calendly-4.0.1.tgz"
   integrity sha512-y4IXQ/ghFSPJHlFS2XUb7tUEfLkJAF6SGDDq9EP1pzA1iKW57qwpQO/7pVwshJPPWVkEPYqLN2IkeNzShi2oKQ==
 
 react-dev-utils@^12.0.1:
@@ -8091,7 +8091,7 @@ react-is@^18.0.0:
 
 react-loader-spinner@^5.1.5:
   version "5.1.5"
-  resolved "https://registry.yarnpkg.com/react-loader-spinner/-/react-loader-spinner-5.1.5.tgz#392ecc2c964363cde0572b8aaa41c29ebbe372ad"
+  resolved "https://registry.npmjs.org/react-loader-spinner/-/react-loader-spinner-5.1.5.tgz"
   integrity sha512-kHSBa3pNPNzd3UGOiOsHCC33qx5bZA7IHKau+YSTVn36Jib4eBVx/TNMggudbzW5CTnRCbP5bnYU4ACAX3mA6g==
 
 react-query@^3.39.0:
@@ -8180,8 +8180,15 @@ react-scripts@5.0.1:
 
 react-scroll-to-top@^1.0.8:
   version "1.0.8"
-  resolved "https://registry.yarnpkg.com/react-scroll-to-top/-/react-scroll-to-top-1.0.8.tgz#b78731e77fb4463aa39907a3da9b153e2f0079a4"
+  resolved "https://registry.npmjs.org/react-scroll-to-top/-/react-scroll-to-top-1.0.8.tgz"
   integrity sha512-GXaRZnET2YUy+teAQTcd6qy3Dn8Xme4Qk+7AFhK/2DCwTuo0gu8+p6aARHyoG1TVcvzRE7QCCZYNiFZmy8HW7Q==
+
+react-spinners@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.npmjs.org/react-spinners/-/react-spinners-0.12.0.tgz"
+  integrity sha512-kC/3g4Dk3kBaVfYVu7f+Zxd9wTxt6Lzws5cP3jCuE03TZwTNtwS++ZGUNF8BR3M8UrUFXP0gil0L9LONOsUkjw==
+  dependencies:
+    "@emotion/react" "^11.4.1"
 
 react-toastify@^9.0.1:
   version "9.0.1"

@@ -1,15 +1,17 @@
 import React from 'react'
-import {  Grid} from 'react-loader-spinner'
+import { CSSProperties } from "react";
+import BeatLoader from "react-spinners/ScaleLoader";
+
+const override: CSSProperties = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "red",
+};
 
 const Loading = () => {
     return (
-        <div className='flex justify-center items-center h-screen w-full'>
-            <Grid
-                height="100"
-                width="100"
-                color='#660FE0'
-                ariaLabel='loading'
-            />
+        <div className='flex justify-center items-center h-96 w-full'>
+            <BeatLoader color={"#660FE0"}  cssOverride={override} size={250} />
         </div>
     )
 }

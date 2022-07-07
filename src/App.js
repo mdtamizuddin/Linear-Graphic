@@ -33,19 +33,19 @@ import Booking from './Components/Booking/Booking';
 import AddFAQ from './Components/Dashboard/Faq/AddFAQ';
 import ManageFaq from './Components/Dashboard/Faq/ManageFaq';
 import RequireAdmin from './Components/RequireAuth/RequireAdmin';
+import { useState } from 'react';
+import Loading from './Components/Loading/Loading';
 function App() {
+  const [loading, setLoading] = useState(true)
 
-  // const [user, loading] = useAuthState(auth)
-  // const [data, setData] = useState({ role: 'am-public' })
-  // if (user) {
-  //   const url = `https://linear-graphic.herokuapp.com/users/${user?.email}`
-  //   fetch(url)
-  //     .then(res => res.json())
-  //     .then(json => setData(json))
-  // }
-  // if (loading) {
-  //   return <Loading />
-  // }
+  setTimeout(() => {
+    setLoading(false)
+  }, 3000);
+
+  if (loading) {
+    return <Loading />
+  }
+
   return (
     <div className='main-app bg-white'>
       <ScrollToTop smooth component={<p style={{ color: "blue" }}>

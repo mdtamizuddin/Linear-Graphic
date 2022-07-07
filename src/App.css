@@ -35,9 +35,14 @@
     height: 100vh;
     background-color: aliceblue;
 }
-
+.cardI:hover .title{
+    color: #660FE0;
+}
+.cardI{
+    cursor: pointer;
+}
 .container {
-    width: 80%;
+    width: 70%;
 }
 
 .portfolio-image {
