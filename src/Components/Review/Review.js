@@ -20,13 +20,12 @@ const Review = () => {
         return <Loading />
     }
     return (
-        <div className='container mx-auto'>
+        <div className='container mx-auto my-20'>
             <h1 className='text-4xl text-center mt-10 font-bold'>We Care About Our Client. They love us</h1>
-
             <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-8 mt-10'>
                 {
-                    data.map(review => <ReviewCard key={review._id} 
-                    review={review}
+                    data.map(review => <ReviewCard key={review._id}
+                        review={review}
                     />)
                 }
             </div>

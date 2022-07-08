@@ -6,9 +6,7 @@ import design from './image/designer.svg'
 import receive from './image/receive.svg'
 import { useQuery } from 'react-query'
 import ReviewCard from '../Review/ReviewCard'
-import { AnimationOnScroll } from 'react-animation-on-scroll'
-import PortfolioCard from '../Portfolio/PortfolioCard'
-import { Link } from 'react-router-dom'
+
 import Loading from '../Loading/Loading'
 import Portfolio from './Portfolio'
 const Home = () => {
@@ -23,19 +21,9 @@ const Home = () => {
             .then(res => res.json()
             )
     )
-    const urlPort = 'https://linear-graphic.herokuapp.com/portfolio'
-    const { isLoading: portLoading, data: portfolio } = useQuery(['Portfolio'], () =>
-        fetch(urlPort, {
-            method: 'get',
-            headers: {
-                auth: localStorage.getItem('Token')
-            }
-        })
-            .then(res => res.json()
-            )
-    )
 
-    if (isLoading || portLoading) {
+
+    if (isLoading) {
         return <Loading />
     }
     return (

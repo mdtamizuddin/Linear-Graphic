@@ -1,25 +1,24 @@
 import React from 'react'
-import { useQuery } from 'react-query'
-import { Link, useNavigate } from 'react-router-dom'
-import Loading from '../Loading/Loading'
-import PortfolioCard from '../Portfolio/PortfolioCard'
+// import { useQuery } from 'react-query'
+import { useNavigate } from 'react-router-dom'
+// import Loading from '../Loading/Loading'
 
 const Portfolio = () => {
-    const urlPort = 'https://linear-graphic.herokuapp.com/portfolio'
-    const { isLoading, data: portfolio } = useQuery(['Portfolio'], () =>
-        fetch(urlPort, {
-            method: 'get',
-            headers: {
-                auth: localStorage.getItem('Token')
-            }
-        })
-            .then(res => res.json()
-            )
-    )
+    // const urlPort = 'https://linear-graphic.herokuapp.com/portfolio'
+    // const { isLoading, data: portfolio } = useQuery(['Portfolio'], () =>
+    //     fetch(urlPort, {
+    //         method: 'get',
+    //         headers: {
+    //             auth: localStorage.getItem('Token')
+    //         }
+    //     })
+    //         .then(res => res.json()
+    //         )
+    // )
     const navigate = useNavigate()
-    if (isLoading) {
-        return <Loading />
-    }
+    // if (isLoading) {
+    //     return <Loading />
+    // }
     return (
         <main className='container mx-auto pb-10 px-5 lg:px-0 md:px-0'>
 
@@ -57,9 +56,11 @@ const Portfolio = () => {
                     <img onClick={() => navigate('/portfolio')} className='w-full cardI h-screen' src="https://i.ibb.co/g3XwKHV/Business-Company-Strategy-Presentation-Template-Original-and-High-Quality-Power-Point-Templates.jpg" alt="" />
                     <h2 onClick={() => navigate('/portfolio')} className='font-bold title  mt-5 uppercase'>Presentation</h2>
 
-                    <h1 className='text-4xl  font-bold mt-10'>Want to see more?</h1>
+                    <div className='w-full items-start flex flex-col justify-end h-60'>
+                        <h1 className='text-4xl  font-bold mt-10'>Want to see more?</h1>
 
-                    <button onClick={() => navigate('/portfolio')} className='btn btn-outline mt-9 px-10 btn-secondary'>All Our Work</button>
+                        <button onClick={() => navigate('/portfolio')} className='btn btn-outline mt-9 px-10 btn-secondary'>All Our Work</button>
+                    </div>
                 </section>
             </section>
 
